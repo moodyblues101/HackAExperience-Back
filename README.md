@@ -1,2 +1,2 @@
 # Backend_GrupoC
-Respositorio para el backend del grupo C
+Repositorio para el backend del grupo C

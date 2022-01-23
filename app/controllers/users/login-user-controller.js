@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const createJsonError = require('../../errors/create-json-error');
 const throwJsonError = require('../../errors/throw-json-error');
-const { findUSerByEmail } = require('../../repositories/users-repository');
+const { findUserByEmail } = require('../../repositories/users-repository');
 
 const schema = Joi.object().keys({
     username: Joi.string().required(),
@@ -18,7 +18,7 @@ async function loginUser(req, res) {
         await schema.validateAsync(body);
 
         const { username, password } = body;
-        const user = await findUSerByEmail(username);
+        const user = await findUserByEmail(username);
         console.log(user); // !delete
         if (!user) {
             throwJsonError(403, 'No existe un usuario con ese mail y/o password');

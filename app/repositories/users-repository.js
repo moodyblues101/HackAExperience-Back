@@ -19,7 +19,7 @@ async function createUser(user) {
 
     return created.insertId;
 }
-async function findUSerByEmail(email) {
+async function findUserByEmail(email) {
     const pool = await getPool();
     const sql = 'SELECT idUsers, name, email, password, role, verifiedAt FROM users WHERE email = ?';
     const [user] = await pool.query(sql, email);
@@ -29,7 +29,7 @@ async function findUSerByEmail(email) {
 
 async function findUserById(id) {
     const pool = await getPool();
-    const sql = 'SELECT name, email, profilePic, createdAt FROM users WHERE id = ?';
+    const sql = 'SELECT name, email, profilePic, createdAt FROM users WHERE idUsers = ?';
     const [user] = await pool.query(sql, id);
 
     return user[0];
@@ -71,7 +71,7 @@ async function findAllUsers() {
 module.exports = {
     activateUser,
     createUser,
-    findUSerByEmail,
+    findUserByEmail,
     findUserById,
     getUserByVerificationCode,
     findAllUsers

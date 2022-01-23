@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs/dist/bcrypt');
 const randomstring = require('randomstring')
 const createJsonError = require('../../errors/create-json-error');
 const throwJsonError = require('../../errors/throw-json-error');
-const { createUser, findUSerByEmail } = require('../../repositories/users-repository');
+const { createUser, findUserByEmail } = require('../../repositories/users-repository');
 const { sendMailRegister } = require('../../helpers/sendgrid');
 
 const schema = Joi.object().keys({
@@ -21,7 +21,7 @@ async function registerUser(req, res) {
         await schema.validateAsync(body);
         const { name, email, password } = body;
         console.log('password', password); //!delete
-        const user = await findUSerByEmail(email);
+        const user = await findUserByEmail(email);
         if (user) {
             throwJsonError(400, 'Ya existe un usuario registrado con ese mail')
         }

@@ -19,9 +19,8 @@ function validateAuth(req, res, next) {
         const { headers } = req;
         const token = extractAccessToken(headers);
         const decodedToken = jwt.verify(token, JWT_SECRET);
-        console.log('token', decodedToken); //!delete
-        const { idUsers, name, role } = decodedToken;
-        req.auth = { idUsers, name, role };
+        const { id, name, role } = decodedToken;
+        req.auth = { id, name, role };
         next();
     } catch (error) {
         createJsonError(error, res);

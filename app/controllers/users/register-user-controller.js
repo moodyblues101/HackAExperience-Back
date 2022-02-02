@@ -8,8 +8,8 @@ const throwJsonError = require('../../errors/throw-json-error');
 const { createUser, findUserByEmail } = require('../../repositories/users-repository');
 const { sendMailRegister } = require('../../helpers/sendgrid');
 
-const schema = Joi.object().keys({
-    name: Joi.string().min(4).max(120).required(),
+const schemaUser = Joi.object().keys({
+    name: Joi.string().min(3).max(120).required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(4).max(20).required(), // look for improvement in doc 
     verifyPassword: Joi.ref('password'),
@@ -18,7 +18,7 @@ const schema = Joi.object().keys({
 async function registerUser(req, res) {
     try {
         const { body } = req;
-        await schema.validateAsync(body);
+        await schemaUser.validateAsync(body);
         const { name, email, password } = body;
         console.log('password', password); //!delete
         const user = await findUserByEmail(email);

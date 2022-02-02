@@ -3,9 +3,17 @@
 const experiences = [{
     id: 1,
     name: 'Horseback Riding',
+    description: 'Horseback riding Camino de Santiago.',
     city: 'Lugo',
     price: 320,
-    description: 'Horseback riding Camino de Santiago.'
+    totalPlaces: 6,
+    availablePlaces: 6,
+    visits: null,
+    eventStartDate: '2022-02-01',
+    eventEndDate: '2022-02-15',
+    createdAt: '2022-01-24 17:30:00',
+    updatedAt: null,
+    idCategory: 1
 },
 {
     id: 2,

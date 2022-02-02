@@ -1,5 +1,5 @@
 INSERT INTO `users` (
-    idUsers,
+    id,
     name,
     email,
     role,
@@ -19,7 +19,7 @@ VALUES (
 ;
 
 INSERT INTO 'categories' (
-	idCategories,
+	id,
     name,
     description,
 	createdAt)
@@ -43,7 +43,7 @@ VALUES (1, 'spa', 'descripcion', '2021-12-30 11:49:12'),
 ;
 
 INSERT INTO `experiences`(
-    idExperiences,
+    id,
     name,
     description,
     city,
@@ -69,10 +69,10 @@ VALUES (1, 'exp1', 'descripicion1', 'Madrid', 25, 10, 10, 0, '2022-01-11', '2022
 ;
 
 INSERT INTO 'subCategories' (
-	idSubcategories,
+	id,
     name,
-    idCategories,
-    idExperiences,
+    idCategory,
+    idExperience,
 	createdAt)
 VALUES (1, 'Bienestar', 1, 1, '2021-12-30 11:50:00'),
     (2, 'Gastronomía', 8, 2, '2021-12-30 11:50:02'),

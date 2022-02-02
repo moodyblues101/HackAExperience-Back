@@ -3,24 +3,24 @@
 const Joi = require("joi");
 const createJsonError = require("../../errors/create-json-error");
 const throwJsonError = require("../../errors/throw-json-error");
-const { findExperienceById } = require("../../repositories/experiences-repository");
+const { findBookingById } = require("../../repositories/bookings-repository");
 
 const schemaId = Joi.number().integer().positive().required();
 
-async function getExperienceById(req, res) {
+async function getBookingById(req, res) {
     try {
         const { id } = req.params;
         await schemaId.validateAsync(id);
-        const experience = await findExperienceById(id);
-        if (!experience) {
-            throwJsonError(400, 'No existe la experiencia');
+        const booking = await findBookingById(id);
+        if (!booking) {
+            throwJsonError(400, 'No existe la reserva');
         }
 
         res.status(200);
-        res.send(experience);
+        res.send(booking);
     } catch (error) {
         createJsonError(error, res);
     }
 }
 
-module.exports = getExperienceById;
+module.exports = getBookingById;

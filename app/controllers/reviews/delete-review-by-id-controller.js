@@ -16,7 +16,7 @@ async function deleteReviewById(req, res) {
         await schemaId.validateAsync(id);
         const review = await findReviewById(id);
         if (!review) {
-            throwJsonError(400, 'Esta review no existe');
+            throwJsonError(404, 'Esta review no existe');
         }
         await removeReviewById(id);
         res.status(200)

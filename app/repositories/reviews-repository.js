@@ -5,8 +5,7 @@ const getPool = require('../infrastructure/database');
 async function addReview(idUser, idExperience, comment, rating) {
     const now = new Date();
     const pool = await getPool();
-    const sql = `INSERT 
-        INTO reviews (idUser, idExperience, comment, rating, createdAt)
+    const sql = `INSERT INTO reviews (idUser, idExperience, comment, rating, createdAt)
         VALUES (?, ?, ?, ?, ?)
     `;
     const [created] = await pool.query(
@@ -19,9 +18,25 @@ async function addReview(idUser, idExperience, comment, rating) {
 async function removeReviewById(id) {
     const pool = await getPool();
     const sql = 'DELETE FROM reviews WHERE id = ?';
-    const [review] = await pool.query(sql, id);
+    await pool.query(sql, id);
 
-    return review;
+    return true;
+}
+
+async function removeAllReviewsByExperienceId(idExperience) {
+    const pool = await getPool();
+    const sql = 'DELETE FROM reviews WHERE idExperience = ?';
+    await pool.query(sql, idExperience);
+
+    return true;
+}
+
+async function removeAllReviewsByUserId(idUser) {
+    const pool = await getPool();
+    const sql = 'DELETE FROM reviews WHERE idUser = ?';
+    await pool.query(sql, idUser);
+
+    return true;
 }
 
 async function findAllReviews() {
@@ -47,9 +62,9 @@ async function findReviewById(id) {
 async function findReviewsByExperienceId(idExperience) {
     const pool = await getPool();
     const sql = `SELECT * FROM reviews WHERE idExperience = ?`;
-    const [review] = await pool.query(sql, idExperience);
+    const [reviews] = await pool.query(sql, idExperience);
 
-    return review;
+    return reviews;
 }
 
 async function findReviewsByUserId(idUser) {
@@ -58,9 +73,9 @@ async function findReviewsByUserId(idUser) {
     FROM reviews
     LEFT JOIN experiences ON experiences.id = reviews.idExperience
     WHERE idUser = ?`;
-    const [review] = await pool.query(sql, idUser);
+    const [reviews] = await pool.query(sql, idUser);
 
-    return review;
+    return reviews;
 }
 
 async function getRating(idExperience) {
@@ -78,6 +93,8 @@ async function getRating(idExperience) {
 module.exports = {
     addReview,
     removeReviewById,
+    removeAllReviewsByExperienceId,
+    removeAllReviewsByUserId,
     findAllReviews,
     findReviewById,
     findReviewsByExperienceId,

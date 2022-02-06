@@ -25,11 +25,11 @@ async function loginUser(req, res) {
         }
         const { id, name, role, password: passwordHash, verifiedAt } = user;
         const isValidPassword = await bcrypt.compare(password, passwordHash);
-        if (isValidPassword) {
+        if (!isValidPassword) {
             throwJsonError(403, 'No existe un usario con ese mail y/o password');
         }
         if (!verifiedAt) {
-            // Enviar un email para que el usuario haga una review de experiencia pasadas
+            //TODO Enviar un email para que el usuario haga una review de experiencia pasadas
             throwJsonError(401, 'Verifique su cuenta para poder acceder a la web')
         }
         const { JWT_SECRET } = process.env;

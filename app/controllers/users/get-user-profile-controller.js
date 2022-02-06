@@ -9,10 +9,10 @@ async function getUserProfile(req, res) {
     try {
         const { id } = req.auth;
         const user = await findUserById(id);
-        const { name, email, bio, role, createdAt } = user;
+        const { name, email, bio, role, createdAt, updatedAt } = user;
         const image = `${HTTP_SERVER}/${PATH_USER_IMAGE}/${user.profilePic}`;
 
-        res.status(200).send({ name, email, bio, role, createdAt, image });
+        res.status(200).send({ name, email, bio, profilePic: image, role, createdAt, updatedAt });
     } catch (error) {
         createJsonError(error, res);
     }

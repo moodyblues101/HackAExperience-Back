@@ -29,16 +29,21 @@ CREATE TABLE experiences (
     name VARCHAR(150) NOT NULL,
     description VARCHAR(400),
     city VARCHAR(50) NOT NULL,
-    price DECIMAL(8,2) NOT NULL,
-    totalPlaces INT NOT NULL,
-    availablePlaces INT NULL DEFAULT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    totalPlaces INT NOT NULL CHECK (totalPLaces > 0),
+    availablePlaces INT NOT NULL CHECK (availablePlaces > 0),
     visits INT NULL DEFAULT NULL,
     eventStartDate DATE NOT NULL,
     eventEndDate DATE NOT NULL,
     createdAt DATETIME NOT NULL,
     updatedAt DATETIME NULL DEFAULT NULL,
     idCategory INT UNSIGNED NOT NULL,
-    FOREIGN KEY (idCategory) REFERENCES categories(id)
+    FOREIGN KEY (idCategory) 
+		REFERENCES categories(id),
+		-- ON DELETE CASCADE,
+	FOREIGN KEY (idCategory) 
+		REFERENCES experiences_subcategories(idSubcategory)
+		ON DELETE CASCADE
 );
 
 CREATE TABLE subCategories (
@@ -46,9 +51,17 @@ CREATE TABLE subCategories (
     name VARCHAR(150) NOT NULL,
     idExperience INT UNSIGNED NOT NULL,
     FOREIGN KEY (idExperience) 
-    REFERENCES experiences(id),
+		REFERENCES experiences_subcategories(idExperience)
+		ON DELETE CASCADE,
 	createdAt DATETIME NOT NULL,
     updatedAt DATETIME NULL DEFAULT NULL
+);
+
+CREATE TABLE experiences_subcategories (
+	idExperience INT UNSIGNED  NOT NULL,
+    idSubcategory INT UNSIGNED  NOT NULL,
+    FOREIGN KEY (idExperience) REFERENCES experiences(id),
+    FOREIGN KEY (idSubcategory) REFERENCES subCategories(id)
 );
 
 CREATE TABLE experienceImages (
@@ -57,7 +70,8 @@ CREATE TABLE experienceImages (
     principal BOOLEAN NULL DEFAULT ('false'),
     idExperience INT UNSIGNED NOT NULL,
     FOREIGN KEY (idExperience) 
-    REFERENCES experiences(id),
+		REFERENCES experiences(id)
+		ON DELETE CASCADE,
     createdAt DATETIME NOT NULL,
     updatedAt DATETIME NULL DEFAULT NULL
 );
@@ -67,9 +81,11 @@ CREATE TABLE reviews (
     idUser INT UNSIGNED NOT NULL,
     idExperience INT UNSIGNED NOT NULL,
     FOREIGN KEY (idUser)
-    REFERENCES users(id),
+		REFERENCES users(id)
+		ON DELETE CASCADE,
 	FOREIGN KEY (idExperience)
-    REFERENCES experiences(id),
+		REFERENCES experiences(id)
+		ON DELETE CASCADE,
     comment VARCHAR(300),
     rating TINYINT CHECK(rating > 0 AND rating <= 5),
     createdAt DATETIME NOT NULL
@@ -80,9 +96,11 @@ CREATE TABLE bookings (
     idUser INT UNSIGNED NOT NULL,
     idExperience INT UNSIGNED NOT NULL,
     FOREIGN KEY (idUser)
-    REFERENCES users(id),
+		REFERENCES users(id)
+		ON DELETE CASCADE,
     FOREIGN KEY (idExperience)
-    REFERENCES experiences(id),
+		REFERENCES experiences(id)
+		ON DELETE CASCADE,
     createdAt DATETIME NOT NULL,
     updatedAt DATETIME NULL DEFAULT NULL
 );

@@ -2,11 +2,10 @@
 
 const getPool = require('../infrastructure/database');
 
-async function addBooking(idUser, idExperience) {
+async function addBookingByExperienceId(idUser, idExperience) {
     const now = new Date();
     const pool = await getPool();
-    const sql = `
-        INSERT INTO bookings (idUser, idExperience, createdAt)
+    const sql = `INSERT INTO bookings (idUser, idExperience, createdAt)
         VALUES (?, ?, ?)
     `;
     const [created] = await pool.query(
@@ -19,9 +18,25 @@ async function addBooking(idUser, idExperience) {
 async function removeBookingById(id) {
     const pool = await getPool();
     const sql = 'DELETE FROM bookings WHERE id = ?';
-    const [booking] = await pool.query(sql, id);
+    await pool.query(sql, id);
 
-    return booking;
+    return true;
+}
+
+async function removeAllBookingsByExperienceId(idExperience) {
+    const pool = await getPool();
+    const sql = 'DELETE FROM bookings WHERE idExperience = ?';
+    await pool.query(sql, idExperience);
+
+    return true;
+}
+
+async function removeAllBookingsByUserId(idUser) {
+    const pool = await getPool();
+    const sql = 'DELETE FROM bookings WHERE idUser = ?';
+    await pool.query(sql, idUser);
+
+    return true;
 }
 
 async function findAllBookings() {
@@ -56,7 +71,7 @@ async function findBookingsByUserId(idUser) {
     const pool = await getPool();
     const sql = `SELECT bookings.*, experiences.name, experiences.city, experiences.price
     FROM bookings
-    LEFT JOIN experiences ON experiences.id = bookings.idExperience
+    LEFT JOIN experiences ON experiences.id = bookings.idExperience   
     WHERE idUser = ?`;
     const [booking] = await pool.query(sql, idUser);
 
@@ -64,8 +79,10 @@ async function findBookingsByUserId(idUser) {
 }
 
 module.exports = {
-    addBooking,
+    addBookingByExperienceId,
     removeBookingById,
+    removeAllBookingsByExperienceId,
+    removeAllBookingsByUserId,
     findAllBookings,
     findBookingById,
     findBookingsByExperienceId,

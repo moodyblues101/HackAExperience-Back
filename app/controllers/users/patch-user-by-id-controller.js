@@ -1,16 +1,13 @@
 "use strict";
 
-const Joi = require('joi');
-const bcrypt = require('bcryptjs');
-const randomstring = require('randomstring');
-const createJsonError = require('../../errors/create-json-error');
-const { findUserById, findUserByEmail, updateUserById, updateVerficationCode } = require('../../repositories/users-repository');
-const throwJsonError = require('../../errors/throw-json-error');
-const { sendMailRegister } = require('../../helpers/sendgrid');
+const bcrypt = require("bcryptjs");
+const Joi = require("joi");
+const createJsonError = require("../../errors/create-json-error");
+const { findUserById, updateUserById } = require("../../repositories/users-repository");
 
 const schemaUser = Joi.object().keys({
-    name: Joi.string().min(3).max(120).required(),
-    email: Joi.string().email().required(),
+    name: Joi.string().min(3).max(120),
+    email: Joi.string().email(),
     bio: Joi.string().min(6).max(160),
     password: Joi.string().optional(),
     repeatPassword: Joi.string().optional(),
@@ -21,19 +18,15 @@ const schemaPassword = Joi.object().keys({
     repeatPassword: Joi.ref('password'),
 })
 
-async function updateUser(req, res) {
+async function patchUserById(req, res) {
     try {
         const { auth, body } = req;
         const { id } = auth;
-        const { name, email, password, repeatPassword } = body;
+        const { name, email, bio, password, repeatPassword } = body;
         await schemaUser.validateAsync(body);
 
         const userLogged = await findUserById(id);
-        const userExist = await findUserByEmail(email);
 
-        if (userExist && userExist !== id) {
-            throwJsonError(409, 'Ya existe un usuario con ese email');
-        }
         let updatePassword = userLogged.password;
         if (password) {
             await schemaPassword.validateAsync({ password, repeatPassword });
@@ -41,18 +34,24 @@ async function updateUser(req, res) {
 
             updatePassword = passwordHash;
         }
-        await updateUserById({ id, name, email, password: updatePassword });
+
+        const updatedUser = {
+            ...userLogged,
+            ...body,
+        }
+
+        await updateUserById({ id, name, email, bio, password: updatePassword });
 
         if (email !== userLogged.email) {
             const verificationCode = randomstring.generate(64);
             await updateVerficationCode(id, verificationCode);
             await sendMailRegister(name, email, verificationCode);
         }
-        res.status(200).send({ message: 'Usuario actualizado correctamente' });
 
+        res.status(200).send({ ...updatedUser });
     } catch (error) {
         createJsonError(error, res);
     }
 }
 
-module.exports = updateUser;
+module.exports = patchUserById;

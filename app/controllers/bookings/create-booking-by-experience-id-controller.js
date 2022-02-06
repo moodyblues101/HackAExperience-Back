@@ -3,10 +3,10 @@
 const Joi = require('joi');
 const createJsonError = require("../../errors/create-json-error");
 const throwJsonError = require("../../errors/throw-json-error");
-const { addBooking } = require('../../repositories/bookings-repository');
-const { findExperienceById } = require('../../repositories/experiences-repository');
+const { addBookingByExperienceId } = require('../../repositories/bookings-repository');
+const { findExperienceById, updateExperienceWhenBookingIsCreated } = require('../../repositories/experiences-repository');
 
-const schemaId = Joi.number().positive().required()
+const schemaId = Joi.number().positive().required();
 // const schemaBooking = Joi.object().keys({
 //     idUser: Joi.number().integer().positive().required(),
 //     idExperience: Joi.number().integer().positive().required(),
@@ -19,12 +19,13 @@ async function createBookingByExperienceId(req, res) {
         await schemaId.validateAsync(experienceId);
         const experience = findExperienceById(experienceId);
         if (!experience) {
-            throwJsonError(400, 'La experiencia no existe');
+            throwJsonError(404, 'La experiencia no existe');
         }
         // const { body } = req;
         // await schemaBooking.validateAsync(body);
 
-        const bookingId = await addBooking(id, experienceId);
+        const bookingId = await addBookingByExperienceId(id, experienceId);
+        await updateExperienceWhenBookingIsCreated(experienceId);
         res.status(201).send({ bookingId });
 
     } catch (error) {

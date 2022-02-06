@@ -7,14 +7,14 @@ async function createUser(user) {
     const pool = await getPool();
     const sql = `
             INSERT INTO users(
-                name, email, password, verificationCode, role, 
+                name, email, bio, password, verificationCode, role, 
                 createdAt
             ) VALUES (?, ?, ?, ?, ?, ?)
         `;
-    const { name, email, passwordHash, verificationCode } = user;
+    const { name, email, bio, passwordHash, verificationCode } = user;
     const now = new Date();
     const [created] = await pool.query(sql, [
-        name, email, passwordHash, verificationCode, 'administrador', now
+        name, email, bio, passwordHash, verificationCode, 'administrador', now
     ]);
 
     return created.insertId;
@@ -29,7 +29,7 @@ async function findUserByEmail(email) {
 
 async function findUserById(id) {
     const pool = await getPool();
-    const sql = 'SELECT name, email, profilePic, role, password, createdAt FROM users WHERE id = ?';
+    const sql = 'SELECT * FROM users WHERE id = ?';
     const [user] = await pool.query(sql, id);
 
     return user[0];
@@ -85,14 +85,15 @@ async function uploadUserImage(id, image) {
 }
 
 async function updateUserById(user) {
-    const { id, name, email, password } = user;
+    const { id, name, email, bio, password } = user;
+    const now = new Date();
     const pool = await getPool();
     const sql = `
         UPDATE users
-        SET name = ?, email = ?, password = ?
+        SET name = ?, email = ?, bio = ?, password = ?, updatedAt = ?
         WHERE id = ?
     `;
-    await pool.query(sql, [name, email, password, id])
+    await pool.query(sql, [name, email, bio, password, now, id])
 
     return true;
 }

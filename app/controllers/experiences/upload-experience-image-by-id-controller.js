@@ -5,16 +5,23 @@ const createJsonError = require("../../errors/create-json-error");
 const throwJsonError = require('../../errors/throw-json-error');
 const uploadImage = require('../../helpers/uploadImage');
 const { isAdmin } = require('../../helpers/utils');
-const { addImageByExperienceId } = require('../../repositories/experiences-repository');
+const { addImageByExperienceId, removePrincipalByExperienceId } = require('../../repositories/experience-images-repository');
 
-const schema = Joi.number().integer().positive().required();
+const { HTTP_SERVER, PATH_EXPERIENCE_IMAGE } = process.env;
+
+const schemaId = Joi.number().integer().positive().required();
+const schemaPrincipal = Joi.boolean();
 
 async function uploadExperienceImageById(req, res) {
     try {
-        const { experienceId } = req.params
-        await schema.validateAsync(experienceId);
+        const { experienceId } = req.params;
+        await schemaId.validateAsync(experienceId);
         const { role } = req.auth;
         isAdmin(role);
+
+        const { body } = req;
+        const { principal } = body;
+        await schemaPrincipal.validateAsync(principal);
 
         const { files } = req;
         if (!files || Object.keys(files).length === 0) {
@@ -28,7 +35,7 @@ async function uploadExperienceImageById(req, res) {
         if (!imageExperience.mimetype.startsWith('image')) {
             throwJsonError(400, 'Formato no válido');
         }
-        const { PATH_EXPERIENCE_IMAGE } = process.env;
+
         const processImage = await uploadImage({
             imageData: imageExperience.data,
             destination: `${PATH_EXPERIENCE_IMAGE}/${experienceId}`,
@@ -36,9 +43,14 @@ async function uploadExperienceImageById(req, res) {
             height: 300,
             codImage: experienceId,
         });
-        await addImageByExperienceId(experienceId, processImage);
+        if (principal) {
+            await removePrincipalByExperienceId(experienceId);
+        }
+        await addImageByExperienceId(experienceId, processImage, principal);
 
-        res.status(201).send({ image: processImage });
+        res.status(201).send(
+            { image: `${HTTP_SERVER}/${PATH_EXPERIENCE_IMAGE}/${experienceId}/${processImage}` }
+        );
 
     } catch (error) {
         createJsonError(error, res);

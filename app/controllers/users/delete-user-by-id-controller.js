@@ -6,17 +6,17 @@ const throwJsonError = require("../../errors/throw-json-error");
 const { isAdmin } = require("../../helpers/utils");
 const { removeUserById, findUserById } = require('../../repositories/users-repository');
 
-const schema = Joi.number().positive().required();
+const schemaId = Joi.number().integer().positive().required();
 
 async function deleteUserById(req, res) {
     try {
         const { role } = req.auth;
         isAdmin(role);
         const { id } = req.params;
-        await schema.validateAsync(id);
+        await schemaId.validateAsync(id);
         const user = await findUserById(id);
         if (!user) {
-            throwJsonError(400, 'El usuario no existe')
+            throwJsonError(404, 'El usuario no existe')
         }
 
         await removeUserById(id);

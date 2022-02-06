@@ -11,6 +11,7 @@ const { sendMailRegister } = require('../../helpers/sendgrid');
 const schemaUser = Joi.object().keys({
     name: Joi.string().min(3).max(120).required(),
     email: Joi.string().email().required(),
+    bio: Joi.string().min(6).max(160),
     password: Joi.string().min(4).max(20).required(), // look for improvement in doc 
     verifyPassword: Joi.ref('password'),
 });
@@ -19,7 +20,7 @@ async function registerUser(req, res) {
     try {
         const { body } = req;
         await schemaUser.validateAsync(body);
-        const { name, email, password } = body;
+        const { name, bio, email, password } = body;
         console.log('password', password); //!delete
         const user = await findUserByEmail(email);
         if (user) {
@@ -28,7 +29,7 @@ async function registerUser(req, res) {
 
         const passwordHash = await bcrypt.hash(password, 12);
         const verificationCode = randomstring.generate(64);
-        const userDB = { name, email, passwordHash, verificationCode };
+        const userDB = { name, bio, email, passwordHash, verificationCode };
         const userId = await createUser(userDB)
         await sendMailRegister(name, email, verificationCode);
         const activationLink = `http://localhost:3000/api/v1/users/activation?code=${verificationCode}`;

@@ -26,4 +26,4 @@ async function getExperiencesByCategoryId(req, res) {
     }
 }
 
-module.exports = getExperiencesByCategoryId;
+module.exports = getExperiencesByCategoryId;        

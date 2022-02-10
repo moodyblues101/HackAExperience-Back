@@ -4,6 +4,7 @@ const Joi = require("joi");
 const createJsonError = require("../../errors/create-json-error");
 const throwJsonError = require("../../errors/throw-json-error");
 const { findBookingById, removeBookingById } = require("../../repositories/bookings-repository");
+const { updateExperienceWhenBookingIsDeleted, findExperienceById } = require("../../repositories/experiences-repository");
 
 const schemaId = Joi.number().integer().positive().required();
 
@@ -15,7 +16,17 @@ async function deleteBookingById(req, res) {
         if (!booking) {
             throwJsonError(400, 'Esta reserva no existe');
         }
-
+        const { idExperience } = booking;
+        const experience = await findExperienceById(idExperience);
+        const { availablePlaces, totalPlaces, eventStartDate } = experience;
+        if (availablePlaces === totalPlaces) {
+            throwJsonError(400, 'No se puede eliminar esta reserva. La experiencia asociada a la reserva podría tener un overbooking.');
+        }
+        const now = new Date();
+        if (now.getTime() > eventStartDate.getTime()) {
+            throwJsonError(400, 'No puede eliminar una reserva de una experiencia que ya ha comenzado o comenzara hoy')
+        }
+        await updateExperienceWhenBookingIsDeleted(idExperience);
         await removeBookingById(id);
 
         res.status(200)

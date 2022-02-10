@@ -60,7 +60,7 @@ async function updateExperienceWhenBookingIsDeleted(id) {
     const pool = await getPool();
     const sql = `UPDATE experiences
         SET availablePlaces = availablePlaces + 1 
-        WHERE id = ? AND availablePlaces > 0
+        WHERE id = ? AND availablePlaces >= 0 AND availablePlaces < totalPlaces 
     `;
     await pool.query(sql, id);
 

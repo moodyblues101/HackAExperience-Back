@@ -18,7 +18,7 @@ CREATE TABLE users (
 
 CREATE TABLE categories (
 	idCategories INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    mame VARCHAR(150) NOT NULL,
+    name VARCHAR(150) NOT NULL,
     description VARCHAR(400),
 	createdAt DATETIME NOT NULL,
     updatedAt DATETIME NULL DEFAULT NULL
@@ -54,7 +54,7 @@ CREATE TABLE subCategories (
 
 CREATE TABLE experienceImages (
 	idExperienceImages INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    principal BOOLEAN NULL DEFAULT ('false'),
+    principal BOOLEAN NULL DEFAULT (0),
     name VARCHAR(200) NOT NULL,
     idExperiences INT UNSIGNED NOT NULL,
     FOREIGN KEY (idExperiences) 

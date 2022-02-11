@@ -1,0 +1,296 @@
+{
+	"info": {
+		"_postman_id": "c63d1df8-c5b2-452c-9d97-82a3bebf541d",
+		"name": "proyecto-experiencias",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getExperiencesById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{backendUrl}}/api/v1/experiences/1",
+					"host": [
+						"{{backendUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"experiences",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getExperiences",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{backendUrl}}/api/v1/experiences",
+					"host": [
+						"{{backendUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"experiences"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteExperience",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{backendUrl}}/api/v1/experiences/17",
+					"host": [
+						"{{backendUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"experiences",
+						"17"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createExperience",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"experienceName\": \"exp13\",\n    \"experienceDescription\": \"descripcion\",\n    \"city\": \"Santiago\",\n    \"price\": 50,\n    \"totalPlaces\": 20,\n    \"eventStartDate\": \"2022-03-15\",\n    \"eventEndDate\": \"2022-03-15\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{backendUrl}}/api/v1/experiences",
+					"host": [
+						"{{backendUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"experiences"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "uploadImageByIdExp",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "imageExperience",
+							"type": "file",
+							"src": "/home/hack/Desktop/proyecto experiencias/codigo/backend_codigo/resources/download.jpeg"
+						},
+						{
+							"key": "principal",
+							"value": "true",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{backendUrl}}/api/v1/experiences/1/image",
+					"host": [
+						"{{backendUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"experiences",
+						"1",
+						"image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateExperienceById",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"experienceName\": \"exp13\",\n    \"experienceDescription\": \"descripcion\",\n    \"city\": \"Santiago\",\n    \"price\": 50,\n    \"totalPlaces\": 20,\n    \"eventStartDate\": \"2022-03-15\",\n    \"eventEndDate\": \"2022-03-15\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{backendUrl}}/api/v1/experiences/3",
+					"host": [
+						"{{backendUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"experiences",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "loginUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();",
+							"pm.environment.set(\"accessToken\", response.accessToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"admin@hackaboss.com\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{backendUrl}}/api/v1/users/login",
+					"host": [
+						"{{backendUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "uploadMultipleImagesByIdExp",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "imageExperience",
+							"type": "file",
+							"src": "/home/hack/Desktop/proyecto experiencias/codigo/backend_codigo/resources/download.jpeg"
+						},
+						{
+							"key": "imageExperience",
+							"type": "file",
+							"src": "/home/hack/Desktop/proyecto experiencias/codigo/backend_codigo/resources/download.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{backendUrl}}/api/v1/experiences/3/images",
+					"host": [
+						"{{backendUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"experiences",
+						"3",
+						"images"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getExperiencesBySubcategoryId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{backendUrl}}/api/v1/experiences/subcategory/1",
+					"host": [
+						"{{backendUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"experiences",
+						"subcategory",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

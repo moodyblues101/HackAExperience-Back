@@ -1,4 +1,4 @@
-# HACKAEXPERIENCE
+# Hack A Experience
 
 ## ⚙️ Instalación y ejecución del proyecto
 

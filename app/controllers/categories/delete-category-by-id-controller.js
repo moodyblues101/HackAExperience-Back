@@ -1,6 +1,5 @@
 "use strict";
 
-const res = require("express/lib/response");
 const Joi = require("joi");
 const createJsonError = require("../../errors/create-json-error");
 const throwJsonError = require("../../errors/throw-json-error");
@@ -18,13 +17,13 @@ async function deleteCategoryById(req, res) {
         await schemaId.validateAsync(id);
         const category = await findCategoryById(id);
         if (!category) {
-            throwJsonError(404, 'No existe esta categoria');
+            throwJsonError(404, 'No existe la categoria');
         }
 
         await removeCategoryById(id);
 
         res.status(200).send(
-            { message: `La categoria con ${id} ha sido borrada correctamente` }
+            { message: `La categoria con ${id} ha sido eliminada correctamente.` }
         );
     } catch (error) {
         createJsonError(error, res);

@@ -1,9 +1,11 @@
 "use strict";
 
-const bcrypt = require("bcryptjs");
 const Joi = require("joi");
+const bcrypt = require("bcryptjs");
+const randomstring = require("randomstring");
 const createJsonError = require("../../errors/create-json-error");
-const { findUserById, updateUserById } = require("../../repositories/users-repository");
+const { sendMailRegister } = require("../../helpers/sendgrid");
+const { findUserById, updateUserById, updateVerficationCode } = require("../../repositories/users-repository");
 
 const schemaUser = Joi.object().keys({
     name: Joi.string().min(3).max(120),
@@ -16,7 +18,7 @@ const schemaUser = Joi.object().keys({
 const schemaPassword = Joi.object().keys({
     password: Joi.string().min(4).max(20).required(),
     repeatPassword: Joi.ref('password'),
-})
+});
 
 async function patchUserById(req, res) {
     try {

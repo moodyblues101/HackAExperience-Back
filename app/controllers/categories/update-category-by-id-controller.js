@@ -30,7 +30,7 @@ async function updateCategoryById(req, res) {
         const { name } = body;
 
         res.status(200);
-        res.send({ message: `La experiencia con nombre ${name} ha sido actualizada correctamente` });
+        res.send({ message: `La categoria con id ${id} y nombre ${name} ha sido actualizada correctamente` });
     } catch (error) {
         createJsonError(error, res);
     }

@@ -19,7 +19,6 @@ async function loginUser(req, res) {
 
         const { username, password } = body;
         const user = await findUserByEmail(username);
-        console.log(user); // !delete
         if (!user) {
             throwJsonError(403, 'No existe un usuario con ese mail y/o password');
         }

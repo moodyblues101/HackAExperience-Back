@@ -9,7 +9,7 @@ async function createUser(user) {
             INSERT INTO users(
                 name, email, bio, password, verificationCode, role, 
                 createdAt
-            ) VALUES (?, ?, ?, ?, ?, ?)
+            ) VALUES (?, ?, ?, ?, ?, ?, ?)
         `;
     const { name, email, bio, passwordHash, verificationCode } = user;
     const now = new Date();
@@ -19,12 +19,13 @@ async function createUser(user) {
 
     return created.insertId;
 }
-async function findUserByEmail(email) {
-    const pool = await getPool();
-    const sql = 'SELECT id, name, email, password, role, verifiedAt FROM users WHERE email = ?';
-    const [user] = await pool.query(sql, email);
 
-    return user[0];
+async function removeUserById(id) {
+    const pool = await getPool();
+    const sql = 'DELETE FROM users WHERE id = ?';
+    await pool.query(sql, id);
+
+    return true;
 }
 
 async function findUserById(id) {
@@ -33,6 +34,22 @@ async function findUserById(id) {
     const [user] = await pool.query(sql, id);
 
     return user[0];
+}
+
+async function findUserByEmail(email) {
+    const pool = await getPool();
+    const sql = 'SELECT id, name, email, password, role, verifiedAt FROM users WHERE email = ?';
+    const [user] = await pool.query(sql, email);
+
+    return user[0];
+}
+
+async function findAllUsers() {
+    const pool = await getPool();
+    const sql = 'SELECT * FROM users';
+    const [users] = await pool.query(sql);
+
+    return users;
 }
 
 async function activateUser(verificationCode) {
@@ -58,22 +75,6 @@ async function getUserByVerificationCode(code) {
     const [user] = await pool.query(sql, code);
 
     return user[0];
-}
-
-async function findAllUsers() {
-    const pool = await getPool();
-    const sql = 'SELECT id, name, email, verifiedAt FROM users';
-    const [users] = await pool.query(sql);
-
-    return users;
-}
-
-async function removeUserById(id) {
-    const pool = await getPool();
-    const sql = 'DELETE FROM users WHERE id = ?';
-    await pool.query(sql, id);
-
-    return true;
 }
 
 async function uploadUserImage(id, image) {
@@ -112,14 +113,14 @@ async function updateVerficationCode(id, verificationCode) {
 }
 
 module.exports = {
-    activateUser,
     createUser,
-    findUserByEmail,
-    findUserById,
-    getUserByVerificationCode,
-    findAllUsers,
+    activateUser,
     removeUserById,
-    uploadUserImage,
     updateUserById,
     updateVerficationCode,
+    findUserById,
+    findUserByEmail,
+    findAllUsers,
+    getUserByVerificationCode,
+    uploadUserImage,
 }

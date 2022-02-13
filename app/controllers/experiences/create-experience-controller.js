@@ -2,7 +2,9 @@
 
 const Joi = require('joi');
 const createJsonError = require('../../errors/create-json-error');
+const throwJsonError = require('../../errors/throw-json-error');
 const { isAdmin } = require('../../helpers/utils');
+const { findCategoryById } = require('../../repositories/categories-repository');
 const { addExperience } = require('../../repositories/experiences-repository');
 
 const schemaExperience = Joi.object().keys({
@@ -25,6 +27,11 @@ async function createExperience(req, res) {
         const { body } = req;
 
         await schemaExperience.validateAsync(body);
+        const { idCategory } = body;
+        const category = await findCategoryById(idCategory);
+        if (!category) {
+            throwJsonError(404, `No existe la categoria con id ${idCategory}`);
+        }
         const experienceId = await addExperience(body);
 
         res.status(201).send(

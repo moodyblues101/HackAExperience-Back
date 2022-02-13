@@ -39,20 +39,13 @@ CREATE TABLE experiences (
     updatedAt DATETIME NULL DEFAULT NULL,
     idCategory INT UNSIGNED NOT NULL,
     FOREIGN KEY (idCategory) 
-		REFERENCES categories(id),
-		-- ON DELETE CASCADE,
-	FOREIGN KEY (idCategory) 
-		REFERENCES experiences_subcategories(idSubcategory)
-		ON DELETE CASCADE
+		REFERENCES categories(id)
 );
 
 CREATE TABLE subCategories (
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
     name VARCHAR(150) NOT NULL,
-    idExperience INT UNSIGNED NOT NULL,
-    FOREIGN KEY (idExperience) 
-		REFERENCES experiences_subcategories(idExperience)
-		ON DELETE CASCADE,
+    description VARCHAR(400),
 	createdAt DATETIME NOT NULL,
     updatedAt DATETIME NULL DEFAULT NULL
 );

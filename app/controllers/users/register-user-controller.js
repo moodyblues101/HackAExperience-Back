@@ -21,7 +21,6 @@ async function registerUser(req, res) {
         const { body } = req;
         await schemaUser.validateAsync(body);
         const { name, bio, email, password } = body;
-        console.log('password', password); //!delete
         const user = await findUserByEmail(email);
         if (user) {
             throwJsonError(400, 'Ya existe un usuario registrado con ese mail')

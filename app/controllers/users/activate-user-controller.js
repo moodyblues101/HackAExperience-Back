@@ -3,7 +3,6 @@
 const createJsonError = require('../../errors/create-json-error');
 const throwJsonError = require('../../errors/throw-json-error');
 const { sendMailCorrectValidation } = require('../../helpers/sendgrid');
-
 const { activateUser, getUserByVerificationCode } = require('../../repositories/users-repository');
 
 async function validateUser(req, res) {

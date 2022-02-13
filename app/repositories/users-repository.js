@@ -9,7 +9,7 @@ async function createUser(user) {
             INSERT INTO users(
                 name, email, bio, password, verificationCode, role, 
                 createdAt
-            ) VALUES (?, ?, ?, ?, ?, ?)
+            ) VALUES (?, ?, ?, ?, ?, ?, ?)
         `;
     const { name, email, bio, passwordHash, verificationCode } = user;
     const now = new Date();
@@ -62,7 +62,7 @@ async function getUserByVerificationCode(code) {
 
 async function findAllUsers() {
     const pool = await getPool();
-    const sql = 'SELECT id, name, email, verifiedAt FROM users';
+    const sql = 'SELECT * FROM users';
     const [users] = await pool.query(sql);
 
     return users;

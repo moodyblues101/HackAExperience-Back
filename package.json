@@ -1,5 +1,5 @@
 {
-  "name": "backend_grupoc",
+  "name": "hackaexperience-back",
   "version": "1.0.0",
   "description": "Respositorio para el backend del grupo C",
   "main": "app.js",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moodyblues101/Backend_GrupoC.git"
+    "url": "git+https://github.com/moodyblues101/HackAExperience-Back.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/moodyblues101/Backend_GrupoC/issues"
+    "url": "https://github.com/moodyblues101/HackAExperience-Back/issues"
   },
-  "homepage": "https://github.com/moodyblues101/Backend_GrupoC#readme",
+  "homepage": "https://github.com/moodyblues101/HackAExperience-Back#readme",
   "devDependencies": {
     "nodemon": "^2.0.15"
   },

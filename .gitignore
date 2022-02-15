@@ -13,3 +13,5 @@ package-lock.json
 # Optional eslint cache
 .eslintcache
 
+#Others
+.vscode

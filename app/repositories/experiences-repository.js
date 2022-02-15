@@ -18,6 +18,17 @@ async function findExperienceById(id) {
     return experience[0];
 }
 
+async function updateVisitsWhenExperienceIsFound(id) {
+    const pool = await getPool();
+    const sql = `UPDATE experiences
+        SET visits = visits + 1 
+        WHERE id = ? 
+    `;
+    await pool.query(sql, id);
+
+    return true;
+}
+
 async function addExperience(experience) {
     const pool = await getPool();
     const sql = `INSERT INTO experiences (
@@ -49,7 +60,7 @@ async function updateExperienceWhenBookingIsCreated(id) {
     const pool = await getPool();
     const sql = `UPDATE experiences
         SET availablePlaces = availablePlaces - 1 
-        WHERE id = ? AND availablePlaces > 0
+        WHERE id = ? AND availablePlaces >= 0
     `;
     await pool.query(sql, id);
 
@@ -91,6 +102,22 @@ async function findExperiencesByCategoryId(idCategory) {
     return experiences;
 }
 
+async function filterExperiencesByPriceAsc() {
+    const pool = await getPool();
+    const sql = 'SELECT * FROM experiences ORDER BY price ASC;';
+    const [experiences] = await pool.query(sql);
+
+    return experiences;
+}
+
+async function filterExperiencesByPriceDesc() {
+    const pool = await getPool();
+    const sql = 'SELECT * FROM experiences ORDER BY price DESC;';
+    const [experiences] = await pool.query(sql);
+
+    return experiences;
+}
+
 module.exports = {
     addExperience,
     removeExperienceById,
@@ -100,4 +127,7 @@ module.exports = {
     findExperiencesByCategoryId,
     updateExperienceWhenBookingIsCreated,
     updateExperienceWhenBookingIsDeleted,
+    updateVisitsWhenExperienceIsFound,
+    filterExperiencesByPriceAsc,
+    filterExperiencesByPriceDesc,
 }

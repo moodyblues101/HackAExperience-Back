@@ -2,7 +2,9 @@
 
 const Joi = require('joi');
 const createJsonError = require('../../errors/create-json-error');
+const throwJsonError = require('../../errors/throw-json-error');
 const { isAdmin } = require('../../helpers/utils');
+const { findCategoryById } = require('../../repositories/categories-repository');
 const { addExperience } = require('../../repositories/experiences-repository');
 
 const schemaExperience = Joi.object().keys({

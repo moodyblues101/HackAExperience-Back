@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `hackAExperience`.`users` (
   `updatedAt` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -49,6 +50,7 @@ CREATE TABLE IF NOT EXISTS `hackAExperience`.`categories` (
   `updatedAt` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -64,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `hackAExperience`.`experiences` (
   `price` DECIMAL(10,2) NOT NULL,
   `totalPlaces` INT NOT NULL,
   `availablePlaces` INT NOT NULL,
-  `visits` INT NULL DEFAULT NULL,
+  `visits` INT NULL DEFAULT '0',
   `eventStartDate` DATE NOT NULL,
   `eventEndDate` DATE NOT NULL,
   `createdAt` DATETIME NOT NULL,
@@ -76,6 +78,7 @@ CREATE TABLE IF NOT EXISTS `hackAExperience`.`experiences` (
     FOREIGN KEY (`idCategory`)
     REFERENCES `hackAExperience`.`categories` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 13
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -101,6 +104,7 @@ CREATE TABLE IF NOT EXISTS `hackAExperience`.`bookings` (
     REFERENCES `hackAExperience`.`experiences` (`id`)
     ON DELETE CASCADE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -148,6 +152,7 @@ CREATE TABLE IF NOT EXISTS `hackAExperience`.`reviews` (
     REFERENCES `hackAExperience`.`experiences` (`id`)
     ON DELETE CASCADE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

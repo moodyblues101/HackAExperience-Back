@@ -125,6 +125,40 @@
 					"response": []
 				},
 				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Maria Gonzales\",\r\n    \"email\": \"panda621@yopmail.com\",\r\n    \"bio\": \"Test Maria bio ^^\",\r\n    \"password\": \"654321\",\r\n    \"verifyPassword\": \"654321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{backendURL}}/api/v1/users",
+							"host": [
+								"{{backendURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Login User",
 					"event": [
 						{
@@ -143,7 +177,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"panda623@yopmail.com\",\r\n    \"password\": \"$2a$12$oLjMFoWujTJibOhc.iOkXua/JoW5333OsFBtRWgpoUyAmtbjLZZie\"\r\n}\r\n",
+							"raw": "{\r\n    \"username\": \"panda621@yopmail.com\",\r\n    \"password\": \"654321\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -160,6 +194,40 @@
 								"v1",
 								"users",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Luis Castro\",\r\n    \"email\": \"panda620@yopmail.com\",\r\n    \"bio\": \"Test admin bio ^^\",\r\n    \"password\": \"123456\",\r\n    \"verifyPassword\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{backendURL}}/api/v1/users",
+							"host": [
+								"{{backendURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
 							]
 						}
 					},
@@ -190,7 +258,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"panda620@yopmail.com\",\r\n    \"password\": \"654321\"\r\n}\r\n",
+							"raw": "{\r\n    \"username\": \"panda620@yopmail.com\",\r\n    \"password\": \"123456\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -207,40 +275,6 @@
 								"v1",
 								"users",
 								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Register User",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Luis Castro\",\r\n    \"email\": \"panda623@yopmail.com\",\r\n    \"password\": \"123456\",\r\n    \"verifyPassword\": \"123456\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{backendURL}}/api/v1/users",
-							"host": [
-								"{{backendURL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"users"
 							]
 						}
 					},
@@ -295,7 +329,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Luis Castro\",\r\n    \"email\": \"panda623@yopmail.com\",\r\n    \"password\": \"1234\",\r\n    \"repeatPassword\": \"1234\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Luis Castro\",\r\n    \"email\": \"panda623@yopmail.com\",\r\n    \"bio\": \"Test updated bio ^^\",\r\n    \"password\": \"123456\",\r\n    \"repeatPassword\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -325,6 +359,40 @@
 					"response": []
 				},
 				{
+					"name": "Patch User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Luis Castro\",\r\n    \"email\": \"panda620@yopmail.com\",\r\n    \"bio\": \"Test updated bio ^^\",\r\n    \"password\": \"123456\",\r\n    \"repeatPassword\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{backendURL}}/api/v1/users",
+							"host": [
+								"{{backendURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Delete User (AdminOnly)",
 					"request": {
 						"method": "DELETE",
@@ -336,7 +404,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{backendURL}}/api/v1/users/3",
+							"raw": "{{backendURL}}/api/v1/users/2",
 							"host": [
 								"{{backendURL}}"
 							],
@@ -344,7 +412,181 @@
 								"api",
 								"v1",
 								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{backendURL}}/api/v1/categories",
+							"host": [
+								"{{backendURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{backendURL}}/api/v1/categories/1",
+							"host": [
+								"{{backendURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Aventura\",\r\n    \"description\": \"Las aventuras pueden ser actividades con cierto potencial de peligro físico, como viajar, explorar, hacer paracaidismo, escalar montañas, bucear, hacer rafting en el río o participar en deportes extremos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{backendURL}}/api/v1/categories",
+							"host": [
+								"{{backendURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{backendURL}}/api/v1/categories/3",
+							"host": [
+								"{{backendURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
 								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Aire Libre\",\r\n    \"description\": \"Estas actividades pueden incluir la pesca, la caza, el mochileo y la equitación, y se pueden realizar de forma individual o colectiva. La recreación al aire libre es un concepto amplio que abarca una variedad de actividades y paisajes.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{backendURL}}/api/v1/categories/1",
+							"host": [
+								"{{backendURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Category",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Estas actividades pueden incluir la pesca, la caza, el mochilero y la equitación, y se pueden realizar de forma individual o colectiva. La recreación al aire libre es un concepto amplio que abarca una variedad de actividades y paisajes.s\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{backendURL}}/api/v1/categories/1",
+							"host": [
+								"{{backendURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"1"
 							]
 						}
 					},
@@ -387,7 +629,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{backendURL}}/api/v1/experiences/12",
+							"raw": "{{backendURL}}/api/v1/experiences/1",
 							"host": [
 								"{{backendURL}}"
 							],
@@ -395,7 +637,28 @@
 								"api",
 								"v1",
 								"experiences",
-								"12"
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Experiences By Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{backendURL}}/api/v1/categories/1/experiences",
+							"host": [
+								"{{backendURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"1",
+								"experiences"
 							]
 						}
 					},
@@ -414,7 +677,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Horseback Riding12\",\r\n    \"description\": \"Horseback riding Camino de Santiago.\",\r\n    \"city\": \"Lugo\",\r\n    \"price\": 320,\r\n    \"totalPlaces\": 6,\r\n    \"availablePlaces\": 6,\r\n    \"eventStartDate\": \"2022-02-01\",\r\n    \"eventEndDate\": \"2022-02-15\",\r\n    \"idCategory\": 1\r\n}",
+							"raw": "{\r\n    \"name\": \"Horseback Riding\",\r\n    \"description\": \"Horseback riding Camino de Santiago.\",\r\n    \"city\": \"Lugo\",\r\n    \"price\": 320,\r\n    \"totalPlaces\": 3,\r\n    \"availablePlaces\": 3,\r\n    \"eventStartDate\": \"2022-03-01\",\r\n    \"eventEndDate\": \"2022-03-15\",\r\n    \"idCategory\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -567,7 +830,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Surf\",\r\n    \"description\": \"Surf en playa de Riazor\",\r\n    \"city\": \"A Coruña\",\r\n    \"price\": 45,\r\n    \"totalPlaces\": 12,\r\n    \"eventStartDate\": \"2022-03-03\",\r\n    \"eventEndDate\": \"2022-03-18\",\r\n    \"idCategory\": 1\r\n}",
+							"raw": "{\r\n    \"name\": \"Horseback Riding12\",\r\n    \"description\": \"Horseback riding Camino de Santiago.\",\r\n    \"city\": \"Lugo\",\r\n    \"price\": \"320.00\",\r\n    \"totalPlaces\": 3,\r\n    \"availablePlaces\": 3,\r\n    \"eventStartDate\": \"2022-02-10\",\r\n    \"eventEndDate\": \"2022-02-14\",\r\n    \"idCategory\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -575,7 +838,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{backendURL}}/api/v1/experiences/10",
+							"raw": "{{backendURL}}/api/v1/experiences/12",
 							"host": [
 								"{{backendURL}}"
 							],
@@ -583,7 +846,7 @@
 								"api",
 								"v1",
 								"experiences",
-								"10"
+								"12"
 							]
 						}
 					},
@@ -717,7 +980,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{backendURL}}/api/v1/experiences/2/bookings",
+							"raw": "{{backendURL}}/api/v1/experiences/12/bookings",
 							"host": [
 								"{{backendURL}}"
 							],
@@ -725,7 +988,7 @@
 								"api",
 								"v1",
 								"experiences",
-								"2",
+								"12",
 								"bookings"
 							],
 							"query": [
@@ -760,7 +1023,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{backendURL}}/api/v1/experiences/12/bookings",
+							"raw": "{{backendURL}}/api/v1/experiences/1/bookings",
 							"host": [
 								"{{backendURL}}"
 							],
@@ -768,7 +1031,7 @@
 								"api",
 								"v1",
 								"experiences",
-								"12",
+								"1",
 								"bookings"
 							]
 						}
@@ -787,7 +1050,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{backendURL}}/api/v1/bookings/57",
+							"raw": "{{backendURL}}/api/v1/bookings/1",
 							"host": [
 								"{{backendURL}}"
 							],
@@ -795,7 +1058,7 @@
 								"api",
 								"v1",
 								"bookings",
-								"57"
+								"1"
 							],
 							"query": [
 								{
@@ -970,7 +1233,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{backendURL}}/api/v1/reviews/19",
+							"raw": "{{backendURL}}/api/v1/reviews/1",
 							"host": [
 								"{{backendURL}}"
 							],
@@ -978,37 +1241,7 @@
 								"api",
 								"v1",
 								"reviews",
-								"19"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Categories",
-			"item": [
-				{
-					"name": "Create Category",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{accessToken}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{backendURL}}/api/v1/categories",
-							"host": [
-								"{{backendURL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"categories"
+								"1"
 							]
 						}
 					},

@@ -14,7 +14,7 @@ async function createUser(user) {
     const { name, email, bio, passwordHash, verificationCode } = user;
     const now = new Date();
     const [created] = await pool.query(sql, [
-        name, email, bio, passwordHash, verificationCode, 'administrador', now
+        name, email, bio, passwordHash, verificationCode, 'admin', now
     ]);
 
     return created.insertId;

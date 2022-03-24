@@ -48,16 +48,16 @@
 
 - POST - /experiences/:id/bookings - Crear una reserva | Solo el admin
 - GET - /bookings - Devuelve todas las reservas | Solo el admin
-- GET - /bookings/:id - Devuelve una reserva | accessToken necesario o usuario administrador
+- GET - /bookings/:id - Devuelve una reserva | accessToken necesario o usuario admin
 - GET - /experiences/:id/bookings - Devuelve las reservas por experiencia | Solo el admin
 - GET - /users/:id/bookings - Devuelve las reservas por usuario | accessToken necesario
-- DELETE - /bookings/:id - Elimina un reserva | accessToken necesario o usuario administrador
+- DELETE - /bookings/:id - Elimina un reserva | accessToken necesario o usuario admin
 
 ### Endpoints REVIEWS - /api/v1/reviews/
 
 - POST - /experiences/:id/reviews - Crear una review | requiere accessToken
 - GET - /reviews - Devuelve todas las reviews
-- GET - /reviews/:id - Devuelve una review | accessToken o usuario administrador necesario
+- GET - /reviews/:id - Devuelve una review | accessToken o usuario admin necesario
 - GET - /experiences/:id/reviews - Devuelve las reviews por experiencia | Solo el admin
 - GET - /users/:id/reviews - Devuelve las reviews por usuario | accessToken necesario
 - DELETE - /reviews/:id - Elimina un review | Solo el admin

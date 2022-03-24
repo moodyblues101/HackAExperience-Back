@@ -115,7 +115,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `hackAExperience`.`experienceImages` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(200) NOT NULL,
-  `principal` TINYINT(1) NULL DEFAULT _utf8mb4'false',
+  `principal` BOOLEAN NULL DEFAULT _utf8mb4'false',
   `idExperience` INT UNSIGNED NOT NULL,
   `createdAt` DATETIME NOT NULL,
   `updatedAt` DATETIME NULL DEFAULT NULL,

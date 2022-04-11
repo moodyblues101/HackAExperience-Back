@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `hackAExperience`.`users` (
   `email` VARCHAR(100) NOT NULL,
   `bio` VARCHAR(250) NULL DEFAULT NULL,
   `profilePic` VARCHAR(200) NULL DEFAULT NULL,
-  `role` ENUM('admin', 'usuario') NULL DEFAULT _utf8mb4'usuario',
+  `role` ENUM('administrador', 'usuario') NULL DEFAULT _utf8mb4'usuario',
   `password` VARCHAR(128) NOT NULL,
   `verificationCode` VARCHAR(64) NULL DEFAULT NULL,
   `verifiedAt` DATETIME NULL DEFAULT NULL,

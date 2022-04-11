@@ -14,7 +14,7 @@ async function createUser(user) {
     const { name, email, bio, passwordHash, verificationCode } = user;
     const now = new Date();
     const [created] = await pool.query(sql, [
-        name, email, bio, passwordHash, verificationCode, 'admin', now
+        name, email, bio, passwordHash, verificationCode, 'usuario', now
     ]);
 
     return created.insertId;
@@ -38,7 +38,7 @@ async function findUserById(id) {
 
 async function findUserByEmail(email) {
     const pool = await getPool();
-    const sql = 'SELECT id, name, email, password, role, verifiedAt FROM users WHERE email = ?';
+    const sql = 'SELECT id, name, email, bio, profilePic, role, password, verifiedAt FROM users WHERE email = ?';
     const [user] = await pool.query(sql, email);
 
     return user[0];

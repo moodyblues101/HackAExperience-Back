@@ -13,6 +13,7 @@ async function findAllExperiences() {
 async function findExperienceById(id) {
     const pool = await getPool();
     const sql = 'SELECT * FROM experiences WHERE id = ?';
+    // TODO Devolver la media de ratings
     const [experience] = await pool.query(sql, id);
 
     return experience[0];

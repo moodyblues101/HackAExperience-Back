@@ -8,7 +8,7 @@ CREATE TABLE users (
     email VARCHAR(100) NOT NULL,
     bio VARCHAR(250) NULL DEFAULT NULL,
     profilePic VARCHAR(200) NULL DEFAULT NULL,
-    role ENUM ('admin', 'usuario') NULL DEFAULT ('usuario'),
+    role ENUM ('administrador', 'usuario') NULL DEFAULT ('usuario'),
     password VARCHAR(128) NOT NULL,
     verificationCode VARCHAR(64) NULL DEFAULT NULL,
     verifiedAt DATETIME NULL DEFAULT NULL,

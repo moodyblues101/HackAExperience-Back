@@ -22,7 +22,7 @@ async function loginUser(req, res) {
         if (!user) {
             throwJsonError(403, 'No existe un usuario con ese mail y/o password');
         }
-        const { id, name, role, password: passwordHash, verifiedAt } = user;
+        const { id, name, role, password: passwordHash, verifiedAt, email, bio, profilePic } = user;
         const isValidPassword = await bcrypt.compare(password, passwordHash);
         if (!isValidPassword) {
             throwJsonError(403, 'No existe un usario con ese mail y/o password');
@@ -32,16 +32,16 @@ async function loginUser(req, res) {
             throwJsonError(401, 'Verifique su cuenta para poder acceder a la web')
         }
         const { JWT_SECRET } = process.env;
-        const tokenPayload = { id, name, role, ejemplo: 'asdf' };
+        const tokenPayload = { id, name, role, email, bio, profilePic };
         const token = jwt.sign(
             tokenPayload,
             JWT_SECRET,
-            { expiresIn: '20m' },
+            { expiresIn: '120000000' },
         );
 
         const response = {
             accessToken: token,
-            expiresIn: '20m',
+            expiresIn: '120000000',
         }
 
         res.status(200);

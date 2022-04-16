@@ -56,6 +56,21 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
+-- Table `hackAExperience`.`business`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hackAExperience`.`business` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(150) NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
 -- Table `hackAExperience`.`experiences`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `hackAExperience`.`experiences` (
@@ -72,13 +87,18 @@ CREATE TABLE IF NOT EXISTS `hackAExperience`.`experiences` (
   `createdAt` DATETIME NOT NULL,
   `updatedAt` DATETIME NULL DEFAULT NULL,
   `idCategory` INT UNSIGNED NOT NULL,
+  `idBusiness` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `idCategory` (`idCategory` ASC) VISIBLE,
+  INDEX `idBusiness` (`idBusiness` ASC) VISIBLE,
   CONSTRAINT `experiences_ibfk_1`
     FOREIGN KEY (`idCategory`)
-    REFERENCES `hackAExperience`.`categories` (`id`))
+    REFERENCES `hackAExperience`.`categories` (`id`),
+  CONSTRAINT `experiences_ibfk_2`
+    FOREIGN KEY (`idBusiness`)
+    REFERENCES `hackAExperience`.`business` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 13
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -104,7 +124,6 @@ CREATE TABLE IF NOT EXISTS `hackAExperience`.`bookings` (
     REFERENCES `hackAExperience`.`experiences` (`id`)
     ON DELETE CASCADE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -115,7 +134,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `hackAExperience`.`experienceImages` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(200) NOT NULL,
-  `principal` BOOLEAN NULL DEFAULT _utf8mb4'false',
+  `principal` TINYINT(1) NULL DEFAULT _utf8mb4'false',
   `idExperience` INT UNSIGNED NOT NULL,
   `createdAt` DATETIME NOT NULL,
   `updatedAt` DATETIME NULL DEFAULT NULL,
@@ -152,7 +171,6 @@ CREATE TABLE IF NOT EXISTS `hackAExperience`.`reviews` (
     REFERENCES `hackAExperience`.`experiences` (`id`)
     ON DELETE CASCADE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

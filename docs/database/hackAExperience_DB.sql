@@ -24,6 +24,13 @@ CREATE TABLE categories (
     updatedAt DATETIME NULL DEFAULT NULL
 );
 
+CREATE TABLE business (
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    name VARCHAR(150) NOT NULL,
+    createdAt DATETIME NOT NULL,
+    updatedAt DATETIME NULL DEFAULT NULL
+);
+
 CREATE TABLE experiences (
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
     name VARCHAR(150) NOT NULL,
@@ -39,7 +46,10 @@ CREATE TABLE experiences (
     updatedAt DATETIME NULL DEFAULT NULL,
     idCategory INT UNSIGNED NOT NULL,
     FOREIGN KEY (idCategory) 
-		REFERENCES categories(id)
+		REFERENCES categories(id),
+	idBusiness INT UNSIGNED NOT NULL,
+    FOREIGN KEY (idBusiness) 
+		REFERENCES business(id)
 );
 
 CREATE TABLE experienceImages (

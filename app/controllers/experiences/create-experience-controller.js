@@ -5,6 +5,7 @@ const createJsonError = require('../../errors/create-json-error');
 const throwJsonError = require('../../errors/throw-json-error');
 const { isAdmin } = require('../../helpers/utils');
 const { findCategoryById } = require('../../repositories/categories-repository');
+const { findBusinessById } = require('../../repositories/business-repository');
 const { addExperience } = require('../../repositories/experiences-repository');
 
 const schemaExperience = Joi.object().keys({
@@ -17,6 +18,7 @@ const schemaExperience = Joi.object().keys({
     eventStartDate: Joi.date().iso().required(),
     eventEndDate: Joi.date().iso().required(),
     idCategory: Joi.number().integer().positive().required(),
+    idBusiness: Joi.number().integer().positive().required(),
 });
 
 async function createExperience(req, res) {
@@ -32,6 +34,13 @@ async function createExperience(req, res) {
         if (!category) {
             throwJsonError(404, `No existe la categoria con id ${idCategory}`);
         }
+
+        const { idBusiness } = body;
+        const business = await findBusinessById(idBusiness);
+        if (!business) {
+            throwJsonError(404, `No existe la empresa con id ${idBusiness}`);
+        }
+
         const experienceId = await addExperience(body);
 
         res.status(201).send(

@@ -19,6 +19,7 @@ const usersRouter = require('./app/routes/users-routes');
 const bookingsRouter = require('./app/routes/bookings-routes');
 const reviewsRouter = require('./app/routes/reviews-routes');
 const categoriesRouter = require('./app/routes/categories-routes');
+const businessRouter = require('./app/routes/business-routes');
 
 
 app.use('/api/v1/experiences', experiencesRouter);
@@ -26,6 +27,7 @@ app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/bookings', bookingsRouter);
 app.use('/api/v1/reviews', reviewsRouter);
 app.use('/api/v1/categories', categoriesRouter);
+app.use('/api/v1/business', businessRouter);
 
 
 app.listen(PORT, () => console.log(`Running on port: ${PORT}`));

@@ -34,16 +34,16 @@ async function addExperience(experience) {
     const pool = await getPool();
     const sql = `INSERT INTO experiences (
             name, description, city, price, totalPlaces, availablePlaces, 
-            eventStartDate, eventEndDate, idCategory, createdAt
+            eventStartDate, eventEndDate, idCategory, idBusiness, createdAt
         ) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
     const { name, description, city, price, totalPlaces, availablePlaces,
-        eventStartDate, eventEndDate, idCategory } = experience;
+        eventStartDate, eventEndDate, idCategory, idBusiness } = experience;
     const now = new Date();
     const [created] = await pool.query(sql, [
         name, description, city, price, totalPlaces, availablePlaces,
-        eventStartDate, eventEndDate, idCategory, now
+        eventStartDate, eventEndDate, idCategory, idBusiness, now
     ]);
 
     return created.insertId;
@@ -103,6 +103,14 @@ async function findExperiencesByCategoryId(idCategory) {
     return experiences;
 }
 
+async function findExperiencesByBusinessId(idBusiness) {
+    const pool = await getPool();
+    const sql = `SELECT * FROM experiences WHERE idBusiness = ?`;
+    const [experiences] = await pool.query(sql, idBusiness);
+
+    return experiences;
+}
+
 async function filterExperiencesByPriceAsc() {
     const pool = await getPool();
     const sql = 'SELECT * FROM experiences ORDER BY price ASC;';
@@ -126,6 +134,7 @@ module.exports = {
     findExperienceById,
     findAllExperiences,
     findExperiencesByCategoryId,
+    findExperiencesByBusinessId,
     updateExperienceWhenBookingIsCreated,
     updateExperienceWhenBookingIsDeleted,
     updateVisitsWhenExperienceIsFound,

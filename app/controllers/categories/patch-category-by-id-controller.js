@@ -8,7 +8,7 @@ const { findCategoryById, updateCategory } = require("../../repositories/categor
 
 const schemaId = Joi.number().integer().positive().required();
 const schemaCategory = Joi.object().keys({
-    name: Joi.string().min(3).max(120),
+    name: Joi.string().min(3).max(150),
     description: Joi.string().min(4).max(400),
 });
 

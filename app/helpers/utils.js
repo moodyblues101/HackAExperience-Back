@@ -7,7 +7,7 @@ function isAdmin(role) {
         throwJsonError(403, 'No tienes permisos de administrador para realizar esta acción');
     }
 
-    return true
+    return true;
 }
 
 module.exports = {

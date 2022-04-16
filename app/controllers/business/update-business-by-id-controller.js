@@ -4,36 +4,35 @@ const Joi = require("joi");
 const createJsonError = require("../../errors/create-json-error");
 const throwJsonError = require("../../errors/throw-json-error");
 const { isAdmin } = require("../../helpers/utils");
-const { findCategoryById, updateCategory } = require("../../repositories/categories-repository");
+const { findBusinessById, updateBusiness } = require("../../repositories/business-repository");
 
 const schemaId = Joi.number().integer().positive().required();
-const schemaCategory = Joi.object().keys({
+const schemaBusiness = Joi.object().keys({
     name: Joi.string().min(3).max(150).required(),
-    description: Joi.string().min(4).max(400),
 });
 
-async function updateCategoryById(req, res) {
+async function updateBusinessById(req, res) {
     try {
         const { role } = req.auth;
         isAdmin(role);
 
         const { id } = req.params;
         await schemaId.validateAsync(id);
-        const category = await findCategoryById(id);
-        if (!category) {
-            throwJsonError(404, 'La categoria no existe');
+        const business = await findBusinessById(id);
+        if (!business) {
+            throwJsonError(404, 'La empresa no existe');
         }
         const { body } = req;
-        await schemaCategory.validateAsync(body);
+        await schemaBusiness.validateAsync(body);
 
-        await updateCategory(id, body);
+        await updateBusiness(id, body)
         const { name } = body;
 
         res.status(200);
-        res.send({ message: `La categoria con id ${id} y nombre ${name} ha sido actualizada correctamente` });
+        res.send({ message: `La empresa con id ${id} y nombre ${name} ha sido actualizada correctamente` });
     } catch (error) {
         createJsonError(error, res);
     }
 }
 
-module.exports = updateCategoryById;
+module.exports = updateBusinessById;

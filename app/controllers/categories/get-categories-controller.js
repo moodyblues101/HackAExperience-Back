@@ -13,7 +13,7 @@ async function getCategories(req, res) {
         res.status(200)
         res.send({ categoriesData: categories });
     } catch (error) {
-        createJsonError(error, res)
+        createJsonError(error, res);
     }
 }
 

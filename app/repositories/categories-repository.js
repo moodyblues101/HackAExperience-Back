@@ -45,7 +45,7 @@ async function findCategoryById(id) {
 
 async function findAllCategories() {
     const pool = await getPool();
-    const sql = 'SELECT * FROM categories ';
+    const sql = 'SELECT * FROM categories';
     const [categories] = await pool.query(sql);
 
     return categories;

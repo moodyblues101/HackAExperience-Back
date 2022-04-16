@@ -9,7 +9,7 @@ const getCategoryById = require('../controllers/categories/get-category-by-id-co
 const deleteCategoryById = require('../controllers/categories/delete-category-by-id-controller');
 const patchCategoryById = require('../controllers/categories/patch-category-by-id-controller');
 const updateCategoryById = require('../controllers/categories/update-category-by-id-controller');
-const getExperiencesByCategoryId = require('../controllers/experiences/get-experiences-by-category-id');
+const getExperiencesByCategoryId = require('../controllers/experiences/get-experiences-by-category-id-controller');
 
 // Endpoints publicos
 router.route('/').get(getCategories);

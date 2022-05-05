@@ -43,6 +43,14 @@ async function findBusinessById(id) {
   return business[0];
 }
 
+async function findBusinessByName(name) {
+  const pool = await getPool();
+  const sql = "SELECT * FROM business WHERE name = ?";
+  const [business] = await pool.query(sql, name);
+
+  return business;
+}
+
 async function findAllBusiness() {
   const pool = await getPool();
   const sql = "SELECT * FROM business";
@@ -56,5 +64,6 @@ module.exports = {
   removeBusinessById,
   updateBusiness,
   findBusinessById,
+  findBusinessByName,
   findAllBusiness,
 };

@@ -1,103 +1,128 @@
 "use strict";
 
-const getPool = require('../infrastructure/database');
+const getPool = require("../infrastructure/database");
+
+// async function addReview(idUser, idExperience, comment) {
+//   const now = new Date();
+//   const pool = await getPool();
+//   const sql = `INSERT INTO reviews (idUser, idExperience, comment, createdAt)
+//         VALUES (?, ?, ?, ?)
+//     `;
+//   await pool.query(sql, [idUser, idExperience, comment, now]);
+
+//   return true;
+// }
 
 async function addReview(idUser, idExperience, comment, rating) {
-    const now = new Date();
-    const pool = await getPool();
-    const sql = `INSERT INTO reviews (idUser, idExperience, comment, rating, createdAt)
+  const now = new Date();
+  const pool = await getPool();
+  const sql = `INSERT INTO reviews (idUser, idExperience, comment, rating, createdAt)
         VALUES (?, ?, ?, ?, ?)
     `;
-    const [created] = await pool.query(
-        sql, [idUser, idExperience, comment, rating, now]
-    );
+  const [created] = await pool.query(sql, [
+    idUser,
+    idExperience,
+    comment,
+    rating,
+    now,
+  ]);
 
-    return created.insertId;
+  return created.insertId;
 }
 
 async function removeReviewById(id) {
-    const pool = await getPool();
-    const sql = 'DELETE FROM reviews WHERE id = ?';
-    await pool.query(sql, id);
+  const pool = await getPool();
+  const sql = "DELETE FROM reviews WHERE id = ?";
+  await pool.query(sql, id);
 
-    return true;
+  return true;
 }
 
 async function removeAllReviewsByExperienceId(idExperience) {
-    const pool = await getPool();
-    const sql = 'DELETE FROM reviews WHERE idExperience = ?';
-    await pool.query(sql, idExperience);
+  const pool = await getPool();
+  const sql = "DELETE FROM reviews WHERE idExperience = ?";
+  await pool.query(sql, idExperience);
 
-    return true;
+  return true;
 }
 
 async function removeAllReviewsByUserId(idUser) {
-    const pool = await getPool();
-    const sql = 'DELETE FROM reviews WHERE idUser = ?';
-    await pool.query(sql, idUser);
+  const pool = await getPool();
+  const sql = "DELETE FROM reviews WHERE idUser = ?";
+  await pool.query(sql, idUser);
 
-    return true;
+  return true;
 }
 
 async function findAllReviews() {
-    const pool = await getPool();
-    const sql = `SELECT reviews.*, users.name, experiences.name, experiences.city, experiences.price
+  const pool = await getPool();
+  const sql = `SELECT reviews.*, users.name, experiences.name, experiences.city, experiences.price
         FROM reviews
         INNER JOIN users ON users.id = reviews.idUser
         INNER JOIN experiences ON experiences.id = idExperience
     `;
-    const [reviews] = await pool.query(sql);
+  const [reviews] = await pool.query(sql);
 
-    return reviews;
+  return reviews;
 }
 
 async function findReviewById(id) {
-    const pool = await getPool();
-    const sql = 'SELECT * FROM reviews WHERE id = ?';
-    const [review] = await pool.query(sql, id);
+  const pool = await getPool();
+  const sql = "SELECT * FROM reviews WHERE id = ?";
+  const [review] = await pool.query(sql, id);
 
-    return review[0];
+  return review[0];
 }
 
 async function findReviewsByExperienceId(idExperience) {
-    const pool = await getPool();
-    const sql = `SELECT * FROM reviews WHERE idExperience = ?`;
-    const [reviews] = await pool.query(sql, idExperience);
+  const pool = await getPool();
+  const sql = `SELECT * FROM reviews WHERE idExperience = ?`;
+  const [reviews] = await pool.query(sql, idExperience);
 
-    return reviews;
+  return reviews;
 }
 
 async function findReviewsByUserId(idUser) {
-    const pool = await getPool();
-    const sql = `SELECT reviews.*, experiences.name, experiences.city, experiences.price
+  const pool = await getPool();
+  const sql = `SELECT reviews.*, experiences.name, experiences.city, experiences.price
     FROM reviews
     LEFT JOIN experiences ON experiences.id = reviews.idExperience
     WHERE idUser = ?`;
-    const [reviews] = await pool.query(sql, idUser);
+  const [reviews] = await pool.query(sql, idUser);
 
-    return reviews;
+  return reviews;
 }
 
+// async function findReviewsByUserId(idUser) {
+//   const pool = await getPool();
+//   const sql = `SELECT idExperience
+//     FROM reviews
+//     WHERE idUser = ?`;
+//   const [reviews] = await pool.query(sql, idUser);
+
+//   return reviews;
+// }
+
 async function getRating(idExperience) {
-    const pool = await getPool();
-    const sql = `SELECT 
+  const pool = await getPool();
+  const sql = `SELECT 
         AVG(rating) as media, 
         COUNT(rating) as numValoraciones 
         FROM reviews WHERE idExperience = ?
     `;
-    const [review] = await pool.query(sql, idExperience);
+  const [review] = await pool.query(sql, idExperience);
 
-    return review[0];
+  return review[0];
 }
 
 module.exports = {
-    addReview,
-    removeReviewById,
-    removeAllReviewsByExperienceId,
-    removeAllReviewsByUserId,
-    findAllReviews,
-    findReviewById,
-    findReviewsByExperienceId,
-    findReviewsByUserId,
-    getRating,
-}
+  addReview,
+  removeReviewById,
+  removeAllReviewsByExperienceId,
+  removeAllReviewsByUserId,
+  findAllReviews,
+  findReviewById,
+  findReviewsByExperienceId,
+  findReviewsByUserId,
+  getRating,
+};

@@ -39,7 +39,7 @@ async function loginUser(req, res) {
       id: id,
       role: role,
       accessToken: token,
-      expiresIn: 1200,
+      expiresIn: 3600000,
     };
 
     res.status(200);

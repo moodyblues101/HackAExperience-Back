@@ -12,7 +12,7 @@ async function getBusiness(req, res) {
       throwJsonError(404, "No existen empresas");
     }
     res.status(200);
-    res.send({ businessData: business });
+    res.send(business);
   } catch (error) {
     createJsonError(error, res);
   }

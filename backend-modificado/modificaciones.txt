@@ -1,0 +1,43 @@
+CONTROLLERS ------
+    BOOKINGS:
+        - delete-booking-by-id: comentado el if (availablePlaces === totalPlaces)
+            (daba error y no dejaba borrar la reserva)
+
+    BUSINESS:
+        - create-business: añadido if para no crear empresas que se llamen igual
+        - añadido get-business-by-name (tambien en repositories y routes de business)
+        - get-business: cambiado a .send(business)
+
+    EXPERIENCES:
+        - create-new-experience => añadido a .send experienceId
+        - get-reviews-by-experience => cambiado a send(reviews)
+
+    REVIEWS:
+        - get-reviews-by-id-experience => send(reviews)
+    
+    USERS:
+        - login-user:   - token: expiresIn:3600000
+                        - añadido a response idUser y role; expiresIn: 3600000
+        
+        - añadidos patch de avatar, name, bio y constraseña 
+            (con sus respectivas routes y repositories)
+
+        - upload-image-profile-controller: 
+            falta el punto antes de jpg (=> .jpg) en validExtensions
+        - delete-user-by-id: comentado que solo pueda borrar usuarios el admin
+            (para que el usuario se dé de baja)
+
+REPOSITORIES ------
+    BOOKINGS:   - findBookingsByUserId: añadido experiences.description 
+                    y experiences.eventStartDate 
+
+    
+                
+
+ROUTES ------
+
+DOCS-DATABASE -----
+    - database-schema.sql:  - linea 95: ('id')=> [falta una coma y sobra )]
+                            - linea 27: tabla de usuarios, campo 'bio', como default
+                                'añade tu bio' (para que no de error)
+    

@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `hackAExperience`.`users` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(150) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
-  `bio` VARCHAR(250) NULL DEFAULT NULL,
+  `bio` VARCHAR(250) NULL DEFAULT 'añade tu bio',
   `profilePic` VARCHAR(200) NULL DEFAULT NULL,
   `role` ENUM('administrador', 'usuario') NULL DEFAULT _utf8mb4'usuario',
   `password` VARCHAR(128) NOT NULL,

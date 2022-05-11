@@ -18,6 +18,24 @@ async function findExperienceById(id) {
   return experience[0];
 }
 
+// async function findExperienceById(id) {
+//   const pool = await getPool();
+//   const sql = `SELECT experiences.*,
+//                 categories.name,
+//                 experienceImages.id,
+//                 users.profilePic,
+//                 business.name
+//               FROM experiences
+//               INNER JOIN experienceImages on experienceImages.idExperience = experieneces.id
+//               INNER JOIN categories on categories.id = experiences.idCategory
+//               INNER JOIN bookings on bookings.idExperience = experiences.id
+//               INNER JOIN users on users.id = bookings.idUser
+//               WHERE id = ?`;
+//   const [experience] = await pool.query(sql, id);
+
+//   return experience[0];
+// }
+
 async function updateVisitsWhenExperienceIsFound(id) {
   const pool = await getPool();
   const sql = `UPDATE experiences

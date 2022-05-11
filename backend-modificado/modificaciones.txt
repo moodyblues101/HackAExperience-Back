@@ -14,6 +14,8 @@ CONTROLLERS ------
 
     REVIEWS:
         - get-reviews-by-id-experience => send(reviews)
+        - añadido getReviewsByIdCategory (y routes y repositories): obtiene reviews por 
+            id de categoria y el avatar del usuario que ha hecho la review
     
     USERS:
         - login-user:   - token: expiresIn:3600000

@@ -74,6 +74,19 @@ async function findReviewById(id) {
   return review[0];
 }
 
+async function findReviewsByIdCategory(id) {
+  const pool = await getPool();
+  const sql = `select reviews.*, users.profilePic from reviews 
+	inner join experiences on experiences.id = reviews.idExperience
+    inner join categories on categories.id = experiences.idCategory 
+    inner join users on users.id = reviews.idUser
+    where categories.id = ?`;
+
+  const [reviews] = await pool.query(sql, id);
+
+  return reviews;
+}
+
 async function findReviewsByExperienceId(idExperience) {
   const pool = await getPool();
   const sql = `SELECT * FROM reviews WHERE idExperience = ?`;
@@ -122,6 +135,7 @@ module.exports = {
   removeAllReviewsByUserId,
   findAllReviews,
   findReviewById,
+  findReviewsByIdCategory,
   findReviewsByExperienceId,
   findReviewsByUserId,
   getRating,

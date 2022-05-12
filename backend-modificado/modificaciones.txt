@@ -35,6 +35,7 @@ REPOSITORIES ------
                     y experiences.eventStartDate 
 
     EXPERIENCES:    - findExperienceById intento de cambio en respuesta (comentado)
+                    - findAllExperiences añadidos campos en sql
                 
 
 ROUTES ------

@@ -56,10 +56,16 @@ async function removeAllReviewsByUserId(idUser) {
 
 async function findAllReviews() {
   const pool = await getPool();
-  const sql = `SELECT reviews.*, users.name, experiences.name, experiences.city, experiences.price
-        FROM reviews
-        INNER JOIN users ON users.id = reviews.idUser
-        INNER JOIN experiences ON experiences.id = idExperience
+  const sql = `SELECT 
+                reviews.*, 
+                users.name, 
+                users.profilePic, 
+                experiences.name, 
+                experiences.city, 
+                experiences.price
+              FROM reviews
+              LEFT JOIN users ON reviews.idUser = users.id
+              LEFT JOIN experiences ON reviews.idExperience = experiences.id;
     `;
   const [reviews] = await pool.query(sql);
 

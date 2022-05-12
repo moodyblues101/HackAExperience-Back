@@ -4,7 +4,18 @@ const getPool = require("../infrastructure/database");
 
 async function findAllExperiences() {
   const pool = await getPool();
-  const sql = "SELECT * FROM experiences";
+  // const sql = "SELECT * FROM experiences";
+  const sql = `SELECT 
+                experiences.*, 
+                experienceImages.id as idImg, 
+                business.name as businessName, 
+                categories.name as categoryName, 
+                reviews.rating
+              from experiences
+              left join experienceImages on experiences.id = experienceImages.idExperience
+              left join business on experiences.idBusiness = business.id
+              left join categories on experiences.idCategory = categories.id
+              left join reviews on experiences.id = reviews.idExperience`;
   const [experiences] = await pool.query(sql);
 
   return experiences;

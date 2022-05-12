@@ -34,14 +34,17 @@ REPOSITORIES ------
     BOOKINGS:   - findBookingsByUserId: añadido experiences.description 
                     y experiences.eventStartDate 
 
-    EXPERIENCES:    - findExperienceById intento de cambio en respuesta (comentado)
+    EXPERIENCES:    
                     - findAllExperiences añadidos campos en sql
                 
 
 ROUTES ------
+    EXPERIENCES:    -añadido getImagesByExperienceId (tambien en repositories y controller)
 
 DOCS-DATABASE -----
     - database-schema.sql:  - linea 95: ('id')=> [falta una coma y sobra )]
                             - linea 27: tabla de usuarios, campo 'bio', como default
                                 'añade tu bio' (para que no de error)
+                            - tabla experiences: campor eventStartDate y eventEndDate
+                                cambiados a datetime
     

@@ -6,6 +6,7 @@ const validateAuth = require("../middleware/validate-auth");
 const getExperiences = require("../controllers/experiences/get-experiences-controller");
 const getExperienceById = require("../controllers/experiences/get-experience-by-id-controller");
 const createReviewByExperienceId = require("../controllers/reviews/create-review-by-experience-id-controller");
+const getImagesByExperienceId = require("../controllers/experiences/get-impages-by-id-experience-controller");
 const getReviewsByExperienceId = require("../controllers/reviews/get-reviews-by-experience-id");
 const createExperience = require("../controllers/experiences/create-experience-controller");
 const getAvarageRatingByExperienceId = require("../controllers/reviews/get-avarage-rating-by-experience-id-controller");
@@ -20,6 +21,7 @@ const uploadMultipleExperienceImages = require("../controllers/experiences/uploa
 // Endpoints publicos
 router.route("/").get(getExperiences);
 router.route("/:id").get(getExperienceById);
+router.route("/:experienceId/images").get(getImagesByExperienceId);
 router.route("/:experienceId/reviews").get(getReviewsByExperienceId);
 router.route("/:experienceId/rating").get(getAvarageRatingByExperienceId);
 // Endpoints privados

@@ -23,29 +23,21 @@ async function findAllExperiences() {
 
 async function findExperienceById(id) {
   const pool = await getPool();
-  const sql = "SELECT * FROM experiences WHERE id = ?";
+  const sql = `SELECT *
+                FROM experiences 
+                WHERE experiences.id = ?`;
   const [experience] = await pool.query(sql, id);
 
   return experience[0];
 }
 
-// async function findExperienceById(id) {
-//   const pool = await getPool();
-//   const sql = `SELECT experiences.*,
-//                 categories.name,
-//                 experienceImages.id,
-//                 users.profilePic,
-//                 business.name
-//               FROM experiences
-//               INNER JOIN experienceImages on experienceImages.idExperience = experieneces.id
-//               INNER JOIN categories on categories.id = experiences.idCategory
-//               INNER JOIN bookings on bookings.idExperience = experiences.id
-//               INNER JOIN users on users.id = bookings.idUser
-//               WHERE id = ?`;
-//   const [experience] = await pool.query(sql, id);
+async function findImagesByExperienceId(id) {
+  const pool = await getPool();
+  const sql = `select * from experienceImages where idExperience = ?`;
+  const [imagesExperience] = await pool.query(sql, id);
 
-//   return experience[0];
-// }
+  return imagesExperience;
+}
 
 async function updateVisitsWhenExperienceIsFound(id) {
   const pool = await getPool();
@@ -192,6 +184,7 @@ module.exports = {
   findExperienceById,
   findAllExperiences,
   findExperiencesByCategoryId,
+  findImagesByExperienceId,
   updateExperienceWhenBookingIsCreated,
   updateExperienceWhenBookingIsDeleted,
   updateVisitsWhenExperienceIsFound,

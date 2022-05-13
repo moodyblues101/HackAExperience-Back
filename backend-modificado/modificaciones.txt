@@ -48,3 +48,4 @@ DOCS-DATABASE -----
                             - tabla experiences: campor eventStartDate y eventEndDate
                                 cambiados a datetime
     
+    - 2-database-user-admin.sql: añadidos datos 

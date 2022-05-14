@@ -6,6 +6,7 @@ INSERT INTO `users` (
     name,
     email,
     bio,
+    profilePic,
     role,
     password,
     verificationCode,
@@ -16,6 +17,7 @@ VALUES (
     'Admin',
     'hackstudent101@yopmail.com',
     'añade tu bio',
+    '1-avatar.jpg',
     'administrador',
     '$2a$10$cRlNLuF9ySIA6rW.DpwZmunEdUTzKcoGpdIcXyAstPhkOR.LvDDDC',
     '88af7ec004103d086b596021a91c25d25c6336da5c012c078031b51acd3d2860',
@@ -26,6 +28,7 @@ VALUES (
     'usuario2',
     'hackstudent102@yopmail.com',
     'añade tu bio',
+    '2-0NZFI8Tuvp.jpg',
     'usuario',
     '$2a$10$cRlNLuF9ySIA6rW.DpwZmunEdUTzKcoGpdIcXyAstPhkOR.LvDDDC',
     '88af7ec004103d086b596021a91c25d25c6336da5c012c078031b51acd3d2860',
@@ -36,6 +39,7 @@ VALUES (
     'usuario3',
     'hackstudent103@yopmail.com',
     'añade tu bio',
+    '3-WOI4fByEmq.jpg',
     'usuario',
     '$2a$10$cRlNLuF9ySIA6rW.DpwZmunEdUTzKcoGpdIcXyAstPhkOR.LvDDDC',
     '88af7ec004103d086b596021a91c25d25c6336da5c012c078031b51acd3d2860',
@@ -46,6 +50,7 @@ VALUES (
     'usuario4',
     'hackstudent104@yopmail.com',
     'añade tu bio',
+    '4-89C99QhOea.jpg',
     'usuario',
     '$2a$10$cRlNLuF9ySIA6rW.DpwZmunEdUTzKcoGpdIcXyAstPhkOR.LvDDDC',
     '88af7ec004103d086b596021a91c25d25c6336da5c012c078031b51acd3d2860',
@@ -56,12 +61,12 @@ VALUES (
     'usuario5',
     'hackstudent105@yopmail.com',
     'añade tu bio',
+    '5-DvYwLUQkCg.jpg',
     'usuario',
     '$2a$10$cRlNLuF9ySIA6rW.DpwZmunEdUTzKcoGpdIcXyAstPhkOR.LvDDDC',
     '88af7ec004103d086b596021a91c25d25c6336da5c012c078031b51acd3d2860',
     '2021-04-22 01:11:14',
     '2021-04-22 01:11:14')
-
 ;
 
 INSERT INTO `categories` (

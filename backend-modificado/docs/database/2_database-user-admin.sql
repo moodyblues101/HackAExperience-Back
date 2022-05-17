@@ -130,8 +130,7 @@ VALUES (1, 'exp1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
     (15, 'exp15', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Valencia', 35, 10, 10, 0, '2022-09-08 12:00:00', '2022-09-08 16:00:00', '2021-12-30 11:50:12', 4, 7),
     (16, 'exp16', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Madrid', 55, 10, 10, 0, '2022-07-25 20:00:00', '2022-07-25 22:30:00', '2021-12-30 11:50:14', 4, 8)
     (17, 'exp2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Santiago', 30, 10, 10, 0, '2022-06-04 17:00:00', '2022-06-04 18:45:00', '2021-12-30 11:50:02', 1, 2),  
-    (18, 'exp2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Santiago', 30, 10, 10, 0, '2022-06-05 17:00:00', '2022-06-05 18:45:00', '2021-12-30 11:50:02', 1, 2),  
-    
+    (18, 'exp2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Santiago', 30, 10, 10, 0, '2022-06-05 17:00:00', '2022-06-05 18:45:00', '2021-12-30 11:50:02', 1, 2)
     ;
 
 

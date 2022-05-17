@@ -108,31 +108,45 @@ INSERT INTO `experiences`(
     totalPlaces,
     availablePlaces,
     visits,
-    eventStartDate,
-    eventEndDate,
     createdAt,
     idCategory,
     idBusiness) 
-VALUES (1, 'exp1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Madrid', 25, 10, 10, 0, '2022-01-11 11:30:00', '2022-01-11 14:00:00','2021-12-30 11:52:00', 1, 1),
-    (2, 'exp2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Santiago', 30, 10, 10, 0, '2022-02-03 17:00:00', '2022-02-03 18:45:00', '2021-12-30 11:50:02', 1, 2),  
-    (3, 'exp3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'A Coruña', 60, 10, 10, 0,'2022-03-27 14:00:00', '2022-03-27 18:30:00', '2021-12-30 11:50:04', 2, 3),
-    (4, 'exp4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Vigo', 15, 10, 10, 0, '2022-04-11 07:00:00', '2022-04-11 11:00:00', '2021-12-30 11:50:06', 2, 4),
-    (5, 'exp5', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Barcelona', 60, 10, 10, 0, '2022-01-15 21:00:00', '2022-01-15 23:00:00', '2021-12-30 11:50:08', 3, 5),
-    (6, 'exp6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Zaragoza', 75, 10, 10, 0, '2022-02-21 15:00:00', '2022-02-21 17:30:00', '2021-12-30 11:50:10', 3, 6),
-    (7, 'exp7', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Valencia', 35, 10, 10, 0, '2022-03-08 12:00:00', '2022-03-08 16:00:00', '2021-12-30 11:50:12', 4, 7),
-    (8, 'exp8', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Madrid', 55, 10, 10, 0, '2022-04-25 20:00:00', '2022-04-25 22:30:00', '2021-12-30 11:50:14', 4, 8),
-    (9, 'exp9', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Madrid', 25, 10, 10, 0, '2022-06-11 11:30:00', '2022-06-11 14:00:00','2021-12-30 11:52:00', 1, 1),
-    (10, 'exp10', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Santiago', 30, 10, 10, 0, '2022-07-03 17:00:00', '2022-07-03 18:45:00', '2021-12-30 11:50:02', 1, 2),  
-    (11, 'exp11', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'A Coruña', 60, 10, 10, 0,'2022-08-27 14:00:00', '2022-08-27 18:30:00', '2021-12-30 11:50:04', 2, 3),
-    (12, 'exp12', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Vigo', 15, 10, 10, 0, '2022-06-11 07:00:00', '2022-06-11 11:00:00', '2021-12-30 11:50:06', 2, 4),
-    (13, 'exp13', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Barcelona', 60, 10, 10, 0, '2022-07-15 21:00:00', '2022-07-15 23:00:00', '2021-12-30 11:50:08', 3, 5),
-    (14, 'exp14', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Zaragoza', 75, 10, 10, 0, '2022-08-21 15:00:00', '2022-08-21 17:30:00', '2021-12-30 11:50:10', 3, 6),
-    (15, 'exp15', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Valencia', 35, 10, 10, 0, '2022-09-08 12:00:00', '2022-09-08 16:00:00', '2021-12-30 11:50:12', 4, 7),
-    (16, 'exp16', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Madrid', 55, 10, 10, 0, '2022-07-25 20:00:00', '2022-07-25 22:30:00', '2021-12-30 11:50:14', 4, 8),
-    (17, 'exp2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Santiago', 30, 10, 10, 0, '2022-06-04 17:00:00', '2022-06-04 18:45:00', '2021-12-30 11:50:02', 1, 2),  
-    (18, 'exp2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Santiago', 30, 10, 10, 0, '2022-06-05 17:00:00', '2022-06-05 18:45:00', '2021-12-30 11:50:02', 1, 2)
+VALUES (1, 'exp1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Madrid', 25, 10, 10, 0, '2021-12-30 11:52:00', 1, 1),
+    (2, 'exp2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Santiago', 30, 10, 10, 0, '2021-12-30 11:50:02', 1, 2),  
+    (3, 'exp3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'A Coruña', 60, 10, 10, 0, '2021-12-30 11:50:04', 2, 3),
+    (4, 'exp4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Vigo', 15, 10, 10, 0, '2021-12-30 11:50:06', 2, 4),
+    (5, 'exp5', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Barcelona', 60, 10, 10, 0, '2021-12-30 11:50:08', 3, 5),
+    (6, 'exp6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Zaragoza', 75, 10, 10, 0, '2021-12-30 11:50:10', 3, 6),
+    (7, 'exp7', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Valencia', 35, 10, 10, 0, '2021-12-30 11:50:12', 4, 7),
+    (8, 'exp8', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Madrid', 55, 10, 10, 0, '2021-12-30 11:50:14', 4, 8),
+    (9, 'exp9', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Madrid', 25, 10, 10, 0, '2021-12-30 11:52:00', 1, 1),
+    (10, 'exp10', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Santiago', 30, 10, 10, 0, '2021-12-30 11:50:02', 1, 2),  
+    (11, 'exp11', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'A Coruña', 60, 10, 10, 0, '2021-12-30 11:50:04', 2, 3),
+    (12, 'exp12', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Vigo', 15, 10, 10, 0, '2021-12-30 11:50:06', 2, 4),
+    (13, 'exp13', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Barcelona', 60, 10, 10, 0, '2021-12-30 11:50:08', 3, 5),
+    (14, 'exp14', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Zaragoza', 75, 10, 10, 0, '2021-12-30 11:50:10', 3, 6),
+    (15, 'exp15', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Valencia', 35, 10, 10, 0, '2021-12-30 11:50:12', 4, 7),
+    (16, 'exp16', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur a erat nam at lectus. Donec ultrices tincidunt arcu non.', 'Madrid', 55, 10, 10, 0, '2021-12-30 11:50:14', 4, 8)
     ;
 
+insert into `datesExperiences` (id, eventStartDate, eventEndDate, idExperience, createdAt) 
+    values (1,'2022-01-11 11:30:00', '2022-01-11 14:00:00', 1, '2021-12-30 11:52:00'),
+    (2, '2022-02-03 17:00:00', '2022-02-03 18:45:00', 2, '2021-12-30 11:50:02'),  
+    (3, '2022-03-27 14:00:00', '2022-03-27 18:30:00', 3, '2021-12-30 11:50:04'),
+    (4, '2022-04-11 07:00:00', '2022-04-11 11:00:00', 4, '2021-12-30 11:50:06'),
+    (5, '2022-01-15 21:00:00', '2022-01-15 23:00:00', 5, '2021-12-30 11:50:08'),
+    (6, '2022-02-21 15:00:00', '2022-02-21 17:30:00', 6, '2021-12-30 11:50:10'),
+    (7, '2022-03-08 12:00:00', '2022-03-08 16:00:00', 7, '2021-12-30 11:50:12'),
+    (8, '2022-04-25 20:00:00', '2022-04-25 22:30:00', 8, '2021-12-30 11:50:14'),
+    (9, '2022-06-11 11:30:00', '2022-06-11 14:00:00', 9, '2021-12-30 11:52:00'),
+    (10, '2022-07-03 17:00:00', '2022-07-03 18:45:00', 10, '2021-12-30 11:50:02'),  
+    (11, '2022-08-27 14:00:00', '2022-08-27 18:30:00', 11, '2021-12-30 11:50:04'),
+    (12, '2022-06-11 07:00:00', '2022-06-11 11:00:00', 12, '2021-12-30 11:50:06'),
+    (13, '2022-07-15 21:00:00', '2022-07-15 23:00:00', 13, '2021-12-30 11:50:08'),
+    (14, '2022-08-21 15:00:00', '2022-08-21 17:30:00', 14, '2021-12-30 11:50:10'),
+    (15, '2022-09-08 12:00:00', '2022-09-08 16:00:00', 15, '2021-12-30 11:50:12'),
+    (16, '2022-07-25 20:00:00', '2022-07-25 22:30:00', 16, '2021-12-30 11:50:14')
+    ;
 
 
 insert into `bookings` (
@@ -232,13 +246,7 @@ insert into `experienceImages` ( id, name, principal, idExperience, createdAt )
     (45, 'photo15_3.png', 0, 15, '2021-12-30 11:50:12'),
     (46, 'photo16_1.png', 0, 16, '2021-12-30 11:50:14'),
     (47, 'photo16_2.png', 0, 16, '2021-12-30 11:50:14'),
-    (48, 'photo16_3.png', 0, 16, '2021-12-30 11:50:14'),
-    (49, 'photo2_1.png', 0, 17, '2021-12-30 11:50:02'),
-    (50, 'photo2_2.png', 0, 17, '2021-12-30 11:50:02'),
-    (51, 'photo2_3.png', 0, 17, '2021-12-30 11:50:02'),
-    (52, 'photo2_1.png', 0, 18, '2021-12-30 11:50:02'),
-    (53, 'photo2_2.png', 0, 18, '2021-12-30 11:50:02'),
-    (54, 'photo2_3.png', 0, 18, '2021-12-30 11:50:02')
+    (48, 'photo16_3.png', 0, 16, '2021-12-30 11:50:14')
     ;
 
 

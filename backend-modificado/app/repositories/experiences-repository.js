@@ -23,24 +23,18 @@ async function findAllExperiences() {
 async function findExperienceById(id) {
   const pool = await getPool();
   const sql = `SELECT 
-                  experiences.*, 
+                  experiences.*, datesExperiences.eventStartDate,
+                  datesExperiences.eventEndDate,
                   business.name as businessName, 
                   categories.name as categoryName 
                 FROM experiences 
+                left join datesExperiences on experiences.id = datesExperiences.idExperience
                 left join business on experiences.idBusiness = business.id
                 left join categories on experiences.idCategory = categories.id
                 WHERE experiences.id = ?`;
   const [experience] = await pool.query(sql, id);
 
   return experience[0];
-}
-
-async function findSameExperienceDifferentDates(name, city, idBusiness) {
-  const pool = await getPool();
-  const sql = `select * from experiences where name = ? and city = ? and idBusiness= ?`;
-  const [experiences] = await pool.query(sql, name, city, idBusiness);
-
-  return experiences;
 }
 
 async function findImagesByExperienceId(id) {
@@ -201,7 +195,6 @@ module.exports = {
   findAllExperiences,
   findExperiencesByCategoryId,
   findImagesByExperienceId,
-  findSameExperienceDifferentDates,
   updateExperienceWhenBookingIsCreated,
   updateExperienceWhenBookingIsDeleted,
   updateVisitsWhenExperienceIsFound,

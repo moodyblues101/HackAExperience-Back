@@ -82,8 +82,6 @@ CREATE TABLE IF NOT EXISTS `hackAExperience`.`experiences` (
   `totalPlaces` INT NOT NULL,
   `availablePlaces` INT NOT NULL,
   `visits` INT NULL DEFAULT '0',
-  `eventStartDate` DATETIME NOT NULL,
-  `eventEndDate` DATETIME NOT NULL,
   `createdAt` DATETIME NOT NULL,
   `updatedAt` DATETIME NULL DEFAULT NULL,
   `idCategory` INT UNSIGNED NOT NULL,
@@ -98,6 +96,26 @@ CREATE TABLE IF NOT EXISTS `hackAExperience`.`experiences` (
     REFERENCES `hackAExperience`.`business` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 13
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+-- -----------------------------------------------------
+-- Table `hackAExperience`.`datesExperiences`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hackAExperience`.`datesExperiences` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `eventStartDate` DATETIME NOT NULL,
+  `eventEndDate` DATETIME NOT NULL,
+  `idExperience` INT UNSIGNED NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `idExperience` (`idExperience` ASC) VISIBLE,
+  CONSTRAINT `datesExperiences_ibfk_1`
+    FOREIGN KEY (`idExperience`)
+    REFERENCES `hackAExperience`.`experiences` (`id`)
+    ON DELETE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

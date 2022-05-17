@@ -55,3 +55,4 @@ DOCS-DATABASE -----
                                 cambiados a datetime
     
     - 2-database-user-admin.sql: añadidos datos 
+    - añadida tabla datesExperiences

@@ -5,7 +5,6 @@ const createJsonError = require("../../errors/create-json-error");
 const throwJsonError = require("../../errors/throw-json-error");
 const {
   findExperienceById,
-  findSameExperienceDifferentDates,
   updateVisitsWhenExperienceIsFound,
 } = require("../../repositories/experiences-repository");
 
@@ -20,11 +19,7 @@ async function getExperienceById(req, res) {
       throwJsonError(400, "No existe la experiencia");
     }
     await updateVisitsWhenExperienceIsFound(id);
-    // const experiences = await findSameExperienceDifferentDates(
-    //   experience.name,
-    //   experience.city,
-    //   experience.idBusiness
-    // );
+
     res.status(200);
     res.send(experience);
   } catch (error) {

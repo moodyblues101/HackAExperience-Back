@@ -35,6 +35,14 @@ async function findExperienceById(id) {
   return experience[0];
 }
 
+async function findSameExperienceDifferentDates(name, city, idBusiness) {
+  const pool = await getPool();
+  const sql = `select * from experiences where name = ? and city = ? and idBusiness= ?`;
+  const [experiences] = await pool.query(sql, name, city, idBusiness);
+
+  return experiences;
+}
+
 async function findImagesByExperienceId(id) {
   const pool = await getPool();
   const sql = `select * from experienceImages where idExperience = ?`;
@@ -193,6 +201,7 @@ module.exports = {
   findAllExperiences,
   findExperiencesByCategoryId,
   findImagesByExperienceId,
+  findSameExperienceDifferentDates,
   updateExperienceWhenBookingIsCreated,
   updateExperienceWhenBookingIsDeleted,
   updateVisitsWhenExperienceIsFound,

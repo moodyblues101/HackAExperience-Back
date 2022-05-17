@@ -21,7 +21,7 @@ async function uploadImageProfile(req, res) {
       throwJsonError(400, "No se ha seleccionado ningún fichero");
     }
     const { profileImage } = files;
-    console.log("profileImage", profileImage); //!delete
+    // console.log("profileImage", profileImage); //!delete
     const { name } = profileImage;
     const extension = path.extname(name);
     if (!validExtensions.includes(extension)) {

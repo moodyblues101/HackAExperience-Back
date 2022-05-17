@@ -95,7 +95,10 @@ async function findReviewsByIdCategory(id) {
 
 async function findReviewsByExperienceId(idExperience) {
   const pool = await getPool();
-  const sql = `SELECT * FROM reviews WHERE idExperience = ?`;
+  const sql = `SELECT reviews.*, users.profilePic 
+                FROM reviews
+                left join users on users.id = reviews.idUser
+                WHERE idExperience = ?`;
   const [reviews] = await pool.query(sql, idExperience);
 
   return reviews;

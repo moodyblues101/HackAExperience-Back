@@ -39,10 +39,11 @@ router
   .route("/:experienceId/bookings")
   .all(validateAuth)
   .post(createBookingByExperienceId);
-router
-  .route("/:experienceId/bookings")
-  .all(validateAuth)
-  .get(getBookingsByExperienceId);
+// router
+//   .route("/:experienceId/bookings")
+//   .all(validateAuth)
+//   .get(getBookingsByExperienceId);
+router.route("/:experienceId/get-bookings").get(getBookingsByExperienceId);
 router
   .route("/:experienceId/image")
   .all(validateAuth)

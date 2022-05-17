@@ -22,8 +22,13 @@ async function findAllExperiences() {
 
 async function findExperienceById(id) {
   const pool = await getPool();
-  const sql = `SELECT *
+  const sql = `SELECT 
+                  experiences.*, 
+                  business.name as businessName, 
+                  categories.name as categoryName 
                 FROM experiences 
+                left join business on experiences.idBusiness = business.id
+                left join categories on experiences.idCategory = categories.id
                 WHERE experiences.id = ?`;
   const [experience] = await pool.query(sql, id);
 
@@ -154,7 +159,11 @@ async function updateExperience(id, experience) {
 
 async function findExperiencesByCategoryId(idCategory) {
   const pool = await getPool();
-  const sql = `SELECT * FROM experiences WHERE idCategory = ?`;
+  const sql = `SELECT experiences.*, business.name as businessName, categories.name as categoryName
+                FROM experiences 
+                left join business on experiences.idBusiness = business.id
+                left join categories on experiences.idCategory = categories.id
+                WHERE idCategory = ?`;
   const [experiences] = await pool.query(sql, idCategory);
 
   return experiences;

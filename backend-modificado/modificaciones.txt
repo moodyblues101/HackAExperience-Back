@@ -36,10 +36,16 @@ REPOSITORIES ------
 
     EXPERIENCES:    
                     - findAllExperiences añadidos campos en sql
+                    - findExperiencesByCategoryId añadidos campos en sql
+
+    REVIEWS:    - findReviewsByExperienceId añadidos campos en sql
+    
                 
 
 ROUTES ------
     EXPERIENCES:    -añadido getImagesByExperienceId (tambien en repositories y controller)
+                    -getBookingsByExperienceId quitado el middleware 
+                            (tambien en controller y repository)
 
 DOCS-DATABASE -----
     - database-schema.sql:  - linea 95: ('id')=> [falta una coma y sobra )]

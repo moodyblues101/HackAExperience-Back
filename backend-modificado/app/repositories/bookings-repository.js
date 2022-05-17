@@ -59,7 +59,10 @@ async function findBookingById(id) {
 
 async function findBookingsByExperienceId(idExperience) {
   const pool = await getPool();
-  const sql = `SELECT * FROM bookings WHERE idExperience = ?`;
+  const sql = `SELECT bookings.*, users.profilePic, users.bio 
+                FROM bookings 
+                left join users on users.id = bookings.idUser
+                WHERE idExperience = ?`;
   const [booking] = await pool.query(sql, idExperience);
 
   return booking;

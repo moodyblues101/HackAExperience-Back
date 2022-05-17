@@ -127,6 +127,7 @@ CREATE TABLE IF NOT EXISTS `hackAExperience`.`bookings` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `idUser` INT UNSIGNED NOT NULL,
   `idExperience` INT UNSIGNED NOT NULL,
+  `idDate` INT UNSIGNED NOT NULL,
   `createdAt` DATETIME NOT NULL,
   `updatedAt` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -139,7 +140,12 @@ CREATE TABLE IF NOT EXISTS `hackAExperience`.`bookings` (
   CONSTRAINT `bookings_ibfk_2`
     FOREIGN KEY (`idExperience`)
     REFERENCES `hackAExperience`.`experiences` (`id`)
-    ON DELETE CASCADE)
+    ON DELETE CASCADE,
+  CONSTRAINT `bookings_ibfk_3`
+    FOREIGN KEY (`idDate`)
+    REFERENCES `hackAExperience`.`datesExperiences` (`id`)
+    ON DELETE CASCADE
+    )
 ENGINE = InnoDB
 AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb4

@@ -11,6 +11,7 @@ CONTROLLERS ------
     EXPERIENCES:
         - create-new-experience => añadido a .send experienceId
         - get-reviews-by-experience => cambiado a send(reviews)
+        - get-dates-by-experience-id => añadido (tambien a routes y repositories)
 
     REVIEWS:
         - get-reviews-by-id-experience => send(reviews)

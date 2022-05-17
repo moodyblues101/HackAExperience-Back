@@ -20,15 +20,22 @@ async function findAllExperiences() {
   return experiences;
 }
 
+async function findDatesExperienceById(id) {
+  const pool = await getPool();
+  const sql = `select * from datesExperiences where idExperience = ?`;
+
+  const [datesExp] = await pool.query(sql, id);
+
+  return datesExp;
+}
+
 async function findExperienceById(id) {
   const pool = await getPool();
   const sql = `SELECT 
-                  experiences.*, datesExperiences.eventStartDate,
-                  datesExperiences.eventEndDate,
+                  experiences.*, 
                   business.name as businessName, 
                   categories.name as categoryName 
                 FROM experiences 
-                left join datesExperiences on experiences.id = datesExperiences.idExperience
                 left join business on experiences.idBusiness = business.id
                 left join categories on experiences.idCategory = categories.id
                 WHERE experiences.id = ?`;
@@ -191,6 +198,7 @@ module.exports = {
   addExperience,
   removeExperienceById,
   updateExperience,
+  findDatesExperienceById,
   findExperienceById,
   findAllExperiences,
   findExperiencesByCategoryId,

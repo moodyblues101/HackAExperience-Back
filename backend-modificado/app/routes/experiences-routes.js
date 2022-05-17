@@ -5,6 +5,7 @@ const router = express.Router();
 const validateAuth = require("../middleware/validate-auth");
 const getExperiences = require("../controllers/experiences/get-experiences-controller");
 const getExperienceById = require("../controllers/experiences/get-experience-by-id-controller");
+const getDatesByExperienceId = require("../controllers/experiences/get-dates-by-experience-id-controller");
 const createReviewByExperienceId = require("../controllers/reviews/create-review-by-experience-id-controller");
 const getImagesByExperienceId = require("../controllers/experiences/get-impages-by-id-experience-controller");
 const getReviewsByExperienceId = require("../controllers/reviews/get-reviews-by-experience-id");
@@ -21,6 +22,7 @@ const uploadMultipleExperienceImages = require("../controllers/experiences/uploa
 // Endpoints publicos
 router.route("/").get(getExperiences);
 router.route("/:id").get(getExperienceById);
+router.route("/:experienceId/dates").get(getDatesByExperienceId);
 router.route("/:experienceId/images").get(getImagesByExperienceId);
 router.route("/:experienceId/reviews").get(getReviewsByExperienceId);
 router.route("/:experienceId/rating").get(getAvarageRatingByExperienceId);

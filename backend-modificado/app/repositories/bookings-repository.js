@@ -2,13 +2,13 @@
 
 const getPool = require("../infrastructure/database");
 
-async function addBookingByExperienceId(idUser, idExperience) {
+async function addBookingByExperienceId(idUser, idExperience, idDate) {
   const now = new Date();
   const pool = await getPool();
-  const sql = `INSERT INTO bookings (idUser, idExperience, createdAt)
-        VALUES (?, ?, ?)
+  const sql = `INSERT INTO bookings (idUser, idExperience, idDate, createdAt)
+        VALUES (?, ?, ?, ?)
     `;
-  const [created] = await pool.query(sql, [idUser, idExperience, now]);
+  const [created] = await pool.query(sql, [idUser, idExperience, idDate, now]);
 
   return created.insertId;
 }

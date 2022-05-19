@@ -20,7 +20,7 @@ async function createBusiness(req, res) {
 
     const { body } = req;
 
-    console.log(body);
+    // console.log(body);
 
     await schemaBusiness.validateAsync(body);
 

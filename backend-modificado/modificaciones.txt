@@ -35,7 +35,7 @@ CONTROLLERS ------
 
 REPOSITORIES ------
     BOOKINGS:   - findBookingsByUserId: añadido experiences.description 
-                    y experiences.eventStartDate 
+                    y datesExperiences.eventStartDate
 
     EXPERIENCES:    
                     - findAllExperiences añadidos campos en sql

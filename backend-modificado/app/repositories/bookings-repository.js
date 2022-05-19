@@ -74,11 +74,12 @@ async function findBookingsByUserId(idUser) {
         bookings.*, 
         experiences.name, 
         experiences.description, 
-         experiences.city, 
+        experiences.city, 
         experiences.price, 
-        experiences.eventStartDate
+        datesExperiences.eventStartDate
     FROM bookings
-    LEFT JOIN experiences ON experiences.id = bookings.idExperience   
+    LEFT JOIN experiences ON experiences.id = bookings.idExperience  
+    left join datesExperiences on datesExperiences.id = bookings.idDate 
     WHERE idUser = ?`;
   const [booking] = await pool.query(sql, idUser);
 

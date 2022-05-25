@@ -67,9 +67,9 @@ async function addExperience(experience) {
   const pool = await getPool();
   const sql = `INSERT INTO experiences (
             name, description, city, price, totalPlaces, availablePlaces, 
-            eventStartDate, eventEndDate, idCategory, idBusiness, createdAt
+            idCategory, idBusiness, createdAt
         ) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
   const {
     name,
@@ -77,8 +77,8 @@ async function addExperience(experience) {
     city,
     price,
     totalPlaces, //availablePlaces,
-    eventStartDate,
-    eventEndDate,
+    // eventStartDate,
+    // eventEndDate,
     idCategory,
     idBusiness,
   } = experience;
@@ -90,10 +90,29 @@ async function addExperience(experience) {
     price,
     totalPlaces,
     totalPlaces,
-    eventStartDate,
-    eventEndDate,
+    // eventStartDate,
+    // eventEndDate,
     idCategory,
     idBusiness,
+    now,
+  ]);
+
+  return created.insertId;
+}
+
+async function addDatesByExperienceId(dateData, idExp) {
+  const pool = await getPool();
+  const sql = `INSERT INTO datesExperiences (
+            eventStartDate, eventEndDate, idExperience, createdAt
+        ) 
+        VALUES (?, ?, ?, ?)
+    `;
+  const { eventStartDate, eventEndDate } = dateData;
+  const now = new Date();
+  const [created] = await pool.query(sql, [
+    eventStartDate,
+    eventEndDate,
+    idExp,
     now,
   ]);
 
@@ -195,6 +214,7 @@ async function filterExperiencesByPriceDesc() {
 }
 
 module.exports = {
+  addDatesByExperienceId,
   addExperience,
   removeExperienceById,
   updateExperience,

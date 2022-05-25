@@ -1,6 +1,6 @@
 use hackAExperience;
 
-
+-- Todos los usuarios tienen la misma contraseña: 1234
 INSERT INTO `users` (
     id,
     name,

@@ -29,7 +29,7 @@ async function deleteBookingById(req, res) {
     //     throwJsonError(400, 'No se puede eliminar esta reserva. La experiencia asociada a la reserva podría tener un overbooking.');
     // }
     const now = new Date();
-    if (now.getTime() > eventStartDate.getTime()) {
+    if (now.getTime() > new Date(eventStartDate).getTime()) {
       throwJsonError(
         400,
         "No puede eliminar una reserva de una experiencia que ya ha comenzado o comenzara hoy"

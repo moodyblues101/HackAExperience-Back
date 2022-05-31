@@ -10,6 +10,7 @@ const createReviewByExperienceId = require("../controllers/reviews/create-review
 const getImagesByExperienceId = require("../controllers/experiences/get-impages-by-id-experience-controller");
 const getReviewsByExperienceId = require("../controllers/reviews/get-reviews-by-experience-id");
 const createExperience = require("../controllers/experiences/create-experience-controller");
+const reactivateExperience = require("../controllers/experiences/reactivate-experience-controller.js");
 const getAvarageRatingByExperienceId = require("../controllers/reviews/get-avarage-rating-by-experience-id-controller");
 const createBookingByExperienceId = require("../controllers/bookings/create-booking-by-experience-id-controller");
 const getBookingsByExperienceId = require("../controllers/bookings/get-bookings-by-experience-id-controller");
@@ -29,6 +30,7 @@ router.route("/:experienceId/reviews").get(getReviewsByExperienceId);
 router.route("/:experienceId/rating").get(getAvarageRatingByExperienceId);
 // Endpoints privados
 router.route("/").all(validateAuth).post(createExperience);
+router.route("/:id/reactivate").all(validateAuth).post(reactivateExperience);
 // router.route("/").post(createExperience);
 router.route("/:id").all(validateAuth).delete(deleteExperienceById);
 // router.route("/:id").delete(deleteExperienceById);

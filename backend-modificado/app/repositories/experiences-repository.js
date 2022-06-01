@@ -20,6 +20,15 @@ async function findAllExperiences() {
   return experiences;
 }
 
+async function findDatesByIdDate(id) {
+  const pool = await getPool();
+  const sql = `select * from datesExperiences where id = ?`;
+
+  const [datesData] = await pool.query(sql, id);
+
+  return datesData;
+}
+
 async function findDatesExperienceById(id) {
   const pool = await getPool();
   const sql = `select * from datesExperiences where idExperience = ?`;
@@ -157,14 +166,12 @@ async function updateExperience(id, experience) {
     price,
     totalPlaces,
     availablePlaces,
-    eventStartDate,
-    eventEndDate,
     idCategory,
   } = experience;
   const pool = await getPool();
   const sql = `UPDATE experiences
         SET name = ?, description = ?, city = ?, price = ?, totalPlaces = ?, availablePlaces = ?, 
-            eventStartDate = ?, eventEndDate = ?, idCategory = ?, updatedAt = ?
+            idCategory = ?, updatedAt = ?
         WHERE id = ?
     `;
   const now = new Date();
@@ -175,12 +182,22 @@ async function updateExperience(id, experience) {
     price,
     totalPlaces,
     availablePlaces,
-    eventStartDate,
-    eventEndDate,
     idCategory,
     now,
     id,
   ]);
+
+  return true;
+}
+
+async function updateDatesExperienceByDateId(idDate, dates) {
+  const { eventStartDate, eventEndDate } = dates;
+  const pool = await getPool();
+  const sql = `UPDATE datesExperiences
+                SET eventStartDate = ?, eventEndDate = ?
+              WHERE id = ?
+    `;
+  await pool.query(sql, [eventStartDate, eventEndDate, idDate]);
 
   return true;
 }
@@ -218,11 +235,13 @@ module.exports = {
   addExperience,
   removeExperienceById,
   updateExperience,
+  findDatesByIdDate,
   findDatesExperienceById,
   findExperienceById,
   findAllExperiences,
   findExperiencesByCategoryId,
   findImagesByExperienceId,
+  updateDatesExperienceByDateId,
   updateExperienceWhenBookingIsCreated,
   updateExperienceWhenBookingIsDeleted,
   updateVisitsWhenExperienceIsFound,

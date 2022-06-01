@@ -17,6 +17,7 @@ const getBookingsByExperienceId = require("../controllers/bookings/get-bookings-
 const patchExperienceById = require("../controllers/experiences/patch-experience-by-id-controller");
 const createDatesByExperienceId = require("../controllers/experiences/create-dates-by-experience-id-controller");
 const updateExperienceById = require("../controllers/experiences/update-experience-by-id-controller");
+const patchDatesExperienceByDateId = require("../controllers/experiences/patch-dates-experience-by-date-id-controller");
 const deleteExperienceById = require("../controllers/experiences/delete-experience-by-id-controller");
 const uploadExperienceImageById = require("../controllers/experiences/upload-experience-image-by-id-controller");
 const uploadMultipleExperienceImages = require("../controllers/experiences/upload-multiple-experience-image-by-id-controller");
@@ -40,6 +41,10 @@ router
   .route("/:experienceId/dates")
   .all(validateAuth)
   .post(createDatesByExperienceId);
+router
+  .route("/:experienceId/dates/:idDate")
+  .all(validateAuth)
+  .patch(patchDatesExperienceByDateId);
 router
   .route("/:experienceId/reviews")
   .all(validateAuth)

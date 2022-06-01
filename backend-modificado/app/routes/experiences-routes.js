@@ -32,9 +32,7 @@ router.route("/:experienceId/rating").get(getAvarageRatingByExperienceId);
 // Endpoints privados
 router.route("/").all(validateAuth).post(createExperience);
 router.route("/:id/reactivate").all(validateAuth).post(reactivateExperience);
-// router.route("/").post(createExperience);
 router.route("/:id").all(validateAuth).delete(deleteExperienceById);
-// router.route("/:id").delete(deleteExperienceById);
 router.route("/:experienceId").all(validateAuth).put(updateExperienceById);
 router.route("/:experienceId").all(validateAuth).patch(patchExperienceById);
 router
@@ -53,10 +51,6 @@ router
   .route("/:experienceId/bookings")
   .all(validateAuth)
   .post(createBookingByExperienceId);
-// router
-//   .route("/:experienceId/bookings")
-//   .all(validateAuth)
-//   .get(getBookingsByExperienceId);
 router.route("/:experienceId/get-bookings").get(getBookingsByExperienceId);
 router
   .route("/:experienceId/image")

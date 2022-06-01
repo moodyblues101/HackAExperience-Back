@@ -32,6 +32,20 @@ async function createDatesByExperienceId(req, res) {
 
     await schemaDate.validateAsync(body);
 
+    const { eventStartDate, eventEndDate } = body;
+
+    const now = new Date().getTime();
+    const startDate = new Date(eventStartDate).getTime();
+    const endDate = new Date(eventEndDate).getTime();
+
+    if (startDate < endDate) {
+      if (startDate < now || endDate < now) {
+        throwJsonError(404, "Fechas incorrectas");
+      }
+    } else {
+      throwJsonError(404, "Fechas incorrectas");
+    }
+
     await addDatesByExperienceId(body, experienceId);
 
     res.status(201).send({

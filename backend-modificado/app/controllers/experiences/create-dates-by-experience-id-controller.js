@@ -14,6 +14,7 @@ const schemaId = Joi.number().integer().positive().required();
 const schemaDate = Joi.object().keys({
   eventStartDate: Joi.date().iso().required(),
   eventEndDate: Joi.date().iso().required(),
+  totalPlaces: Joi.number().integer().positive().max(1000).required(),
 });
 
 async function createDatesByExperienceId(req, res) {

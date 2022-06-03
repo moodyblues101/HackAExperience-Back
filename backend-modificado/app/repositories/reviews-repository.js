@@ -58,7 +58,7 @@ async function findAllReviews() {
   const pool = await getPool();
   const sql = `SELECT 
                 reviews.*, 
-                users.name, 
+                users.name as userName, 
                 users.profilePic, 
                 experiences.name, 
                 experiences.city, 
@@ -95,7 +95,7 @@ async function findReviewsByIdCategory(id) {
 
 async function findReviewsByExperienceId(idExperience) {
   const pool = await getPool();
-  const sql = `SELECT reviews.*, users.profilePic 
+  const sql = `SELECT reviews.*, users.name as userName, users.profilePic 
                 FROM reviews
                 left join users on users.id = reviews.idUser
                 WHERE idExperience = ?`;

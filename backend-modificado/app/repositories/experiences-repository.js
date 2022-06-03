@@ -75,32 +75,19 @@ async function updateVisitsWhenExperienceIsFound(id) {
 async function addExperience(experience) {
   const pool = await getPool();
   const sql = `INSERT INTO experiences (
-            name, description, city, price, totalPlaces, availablePlaces, 
+            name, description, city, price, 
             idCategory, idBusiness, createdAt
         ) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
     `;
-  const {
-    name,
-    description,
-    city,
-    price,
-    totalPlaces, //availablePlaces,
-    // eventStartDate,
-    // eventEndDate,
-    idCategory,
-    idBusiness,
-  } = experience;
+  const { name, description, city, price, idCategory, idBusiness } = experience;
+
   const now = new Date();
   const [created] = await pool.query(sql, [
     name,
     description,
     city,
     price,
-    totalPlaces,
-    totalPlaces,
-    // eventStartDate,
-    // eventEndDate,
     idCategory,
     idBusiness,
     now,
@@ -112,9 +99,9 @@ async function addExperience(experience) {
 async function addDatesByExperienceId(dateData, idExp) {
   const pool = await getPool();
   const sql = `INSERT INTO datesExperiences (
-            eventStartDate, eventEndDate, idExperience, createdAt
+            eventStartDate, eventEndDate, idExperience, totalPlaces, availablePlaces, createdAt
         ) 
-        VALUES (?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?)
     `;
   const { eventStartDate, eventEndDate } = dateData;
   const now = new Date();
@@ -122,6 +109,8 @@ async function addDatesByExperienceId(dateData, idExp) {
     eventStartDate,
     eventEndDate,
     idExp,
+    totalPlaces,
+    totalPlaces,
     now,
   ]);
 
@@ -138,7 +127,7 @@ async function removeExperienceById(id) {
 
 async function updateExperienceWhenBookingIsCreated(id) {
   const pool = await getPool();
-  const sql = `UPDATE experiences
+  const sql = `UPDATE datesExperiences
         SET availablePlaces = availablePlaces - 1 
         WHERE id = ? AND availablePlaces >= 0
     `;
@@ -149,7 +138,7 @@ async function updateExperienceWhenBookingIsCreated(id) {
 
 async function updateExperienceWhenBookingIsDeleted(id) {
   const pool = await getPool();
-  const sql = `UPDATE experiences
+  const sql = `UPDATE datesExperiences
         SET availablePlaces = availablePlaces + 1 
         WHERE id = ? AND availablePlaces >= 0 AND availablePlaces < totalPlaces 
     `;
@@ -159,45 +148,37 @@ async function updateExperienceWhenBookingIsDeleted(id) {
 }
 
 async function updateExperience(id, experience) {
-  const {
-    name,
-    description,
-    city,
-    price,
-    totalPlaces,
-    availablePlaces,
-    idCategory,
-  } = experience;
+  const { name, description, city, price, idCategory } = experience;
   const pool = await getPool();
   const sql = `UPDATE experiences
-        SET name = ?, description = ?, city = ?, price = ?, totalPlaces = ?, availablePlaces = ?, 
+        SET name = ?, description = ?, city = ?, price = ?, 
             idCategory = ?, updatedAt = ?
         WHERE id = ?
     `;
   const now = new Date();
-  await pool.query(sql, [
-    name,
-    description,
-    city,
-    price,
-    totalPlaces,
-    availablePlaces,
-    idCategory,
-    now,
-    id,
-  ]);
+  await pool.query(sql, [name, description, city, price, idCategory, now, id]);
 
   return true;
 }
 
 async function updateDatesExperienceByDateId(idDate, dates) {
-  const { eventStartDate, eventEndDate } = dates;
+  const { eventStartDate, eventEndDate, totalPlaces, availablePlaces } = dates;
   const pool = await getPool();
+
   const sql = `UPDATE datesExperiences
-                SET eventStartDate = ?, eventEndDate = ?
+                SET eventStartDate = ?, eventEndDate = ?, totalPlaces = ?, 
+                availablePlaces = ?, updatedAt = ?
               WHERE id = ?
-    `;
-  await pool.query(sql, [eventStartDate, eventEndDate, idDate]);
+              `;
+  const now = new Date();
+  await pool.query(sql, [
+    eventStartDate,
+    eventEndDate,
+    totalPlaces,
+    availablePlaces,
+    now,
+    idDate,
+  ]);
 
   return true;
 }

@@ -13,6 +13,7 @@ async function getDatesByExperienceId(req, res) {
   try {
     const { experienceId } = req.params;
     await schemaId.validateAsync(experienceId);
+
     const datesExp = await findDatesExperienceById(experienceId);
     if (!datesExp) {
       throwJsonError(400, "No existen fechas para la experiencia");

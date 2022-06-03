@@ -57,6 +57,17 @@ async function findBookingById(id) {
   return booking[0];
 }
 
+async function findBookingByIdDate(id) {
+  const pool = await getPool();
+  const sql = `select bookings.*, users.profilePic, users.bio, users.name 
+              from bookings 
+              left join users on users.id = bookings.idUser
+              where idDate = ?`;
+  const [bookings] = await pool.query(sql, id);
+
+  return bookings;
+}
+
 async function findBookingsByExperienceId(idExperience) {
   const pool = await getPool();
   const sql = `SELECT bookings.*, users.profilePic, users.bio, users.name 
@@ -93,6 +104,7 @@ module.exports = {
   removeAllBookingsByUserId,
   findAllBookings,
   findBookingById,
+  findBookingByIdDate,
   findBookingsByExperienceId,
   findBookingsByUserId,
 };

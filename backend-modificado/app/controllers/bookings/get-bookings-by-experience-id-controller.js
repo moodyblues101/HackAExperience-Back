@@ -3,7 +3,7 @@
 const Joi = require("joi");
 const createJsonError = require("../../errors/create-json-error");
 const throwJsonError = require("../../errors/throw-json-error");
-const { isAdmin } = require("../../helpers/utils");
+// const { isAdmin } = require("../../helpers/utils");
 const {
   findBookingsByExperienceId,
 } = require("../../repositories/bookings-repository");
@@ -20,6 +20,7 @@ async function getBookingsByExperienceId(req, res) {
 
     const { experienceId } = req.params;
     await schemaId.validateAsync(experienceId);
+
     const experience = await findExperienceById(experienceId);
     if (!experience) {
       throwJsonError(404, "La experiencia no existe");

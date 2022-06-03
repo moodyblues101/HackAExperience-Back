@@ -15,8 +15,10 @@ async function deleteExperienceById(req, res) {
   try {
     const { role } = req.auth;
     isAdmin(role);
+
     const { id } = req.params;
     await schemaId.validateAsync(id);
+
     const experience = await findExperienceById(id);
     if (!experience) {
       throwJsonError(404, "La experiencia no existe");

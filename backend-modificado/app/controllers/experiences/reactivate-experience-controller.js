@@ -24,7 +24,7 @@ const schemaExperience = Joi.object().keys({
   description: Joi.string().min(4).max(400),
   city: Joi.string().min(3).max(30).required(),
   price: Joi.number().positive().max(10000).required(),
-  totalPlaces: Joi.number().integer().positive().max(1000).required(),
+  // totalPlaces: Joi.number().integer().positive().max(1000).required(),
   idCategory: Joi.number().integer().positive().required(),
   idBusiness: Joi.number().integer().positive().required(),
 });

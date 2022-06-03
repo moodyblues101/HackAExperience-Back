@@ -15,8 +15,8 @@ const schemaExperience = Joi.object().keys({
   description: Joi.string().min(4).max(400),
   city: Joi.string().min(3).max(30),
   price: Joi.number().positive().max(10000),
-  totalPlaces: Joi.number().integer().positive().max(1000),
-  availablePlaces: Joi.ref("totalPlaces"),
+  // totalPlaces: Joi.number().integer().positive().max(1000),
+  // availablePlaces: Joi.ref("totalPlaces"),
   // eventStartDate: Joi.date().iso(),
   // eventEndDate: Joi.date().iso(),
   idCategory: Joi.number().integer().positive(),
@@ -24,10 +24,12 @@ const schemaExperience = Joi.object().keys({
 
 async function patchExperienceById(req, res) {
   try {
-    const { experienceId } = req.params;
-    await schemaId.validateAsync(experienceId);
     const { role } = req.auth;
     isAdmin(role);
+
+    const { experienceId } = req.params;
+    await schemaId.validateAsync(experienceId);
+
     const experience = await findExperienceById(experienceId);
     if (!experience) {
       throwJsonError(404, "La experiencia no existe");

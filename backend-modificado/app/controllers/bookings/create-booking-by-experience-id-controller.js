@@ -28,7 +28,7 @@ async function createBookingByExperienceId(req, res) {
     await schemaId.validateAsync(idDate);
 
     const date = await findDatesByIdDate(idDate);
-    // console.log("date:", date);
+    console.log("create booking - date:", date);
     if (!date) {
       throwJsonError(404, "La fecha no existe");
     }
@@ -38,7 +38,8 @@ async function createBookingByExperienceId(req, res) {
       throwJsonError(404, "La experiencia no existe");
     }
 
-    const { eventStartDate, availablePlaces } = date;
+    const { eventStartDate, availablePlaces } = date[0];
+    console.log("create booking - availablePlaces:", availablePlaces);
     if (availablePlaces === 0) {
       throwJsonError(400, "La experiencia no puede aceptar más participantes");
     }
@@ -53,7 +54,7 @@ async function createBookingByExperienceId(req, res) {
     await updateExperienceWhenBookingIsCreated(idDate);
 
     const bookingId = await addBookingByExperienceId(id, experienceId, idDate);
-
+    console.log("bookingId OK: ", bookingId);
     res.status(201).send({ bookingId });
   } catch (error) {
     createJsonError(error, res);

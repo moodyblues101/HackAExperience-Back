@@ -7,7 +7,7 @@ const {
   addBookingByExperienceId,
 } = require("../../repositories/bookings-repository");
 const {
-  findDatesExperienceById,
+  findDatesByIdDate,
   findExperienceById,
   updateExperienceWhenBookingIsCreated,
 } = require("../../repositories/experiences-repository");
@@ -27,7 +27,7 @@ async function createBookingByExperienceId(req, res) {
     await schemaId.validateAsync(experienceId);
     await schemaId.validateAsync(idDate);
 
-    const date = await findDatesExperienceById(idDate);
+    const date = await findDatesByIdDate(idDate);
     // console.log("date:", date);
     if (!date) {
       throwJsonError(404, "La fecha no existe");

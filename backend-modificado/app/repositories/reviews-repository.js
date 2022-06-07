@@ -82,7 +82,7 @@ async function findReviewById(id) {
 
 async function findReviewsByIdCategory(id) {
   const pool = await getPool();
-  const sql = `select reviews.*, users.profilePic from reviews 
+  const sql = `select reviews.*, users.profilePic, users.name as userName from reviews 
 	inner join experiences on experiences.id = reviews.idExperience
     inner join categories on categories.id = experiences.idCategory 
     inner join users on users.id = reviews.idUser

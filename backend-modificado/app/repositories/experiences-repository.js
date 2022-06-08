@@ -103,7 +103,7 @@ async function addDatesByExperienceId(dateData, idExp) {
         ) 
         VALUES (?, ?, ?, ?, ?, ?)
     `;
-  const { eventStartDate, eventEndDate } = dateData;
+  const { eventStartDate, eventEndDate, totalPlaces } = dateData;
   const now = new Date();
   const [created] = await pool.query(sql, [
     eventStartDate,
@@ -148,15 +148,24 @@ async function updateExperienceWhenBookingIsDeleted(id) {
 }
 
 async function updateExperience(id, experience) {
-  const { name, description, city, price, idCategory } = experience;
+  const { name, description, city, price, idCategory, idBusiness } = experience;
   const pool = await getPool();
   const sql = `UPDATE experiences
         SET name = ?, description = ?, city = ?, price = ?, 
-            idCategory = ?, updatedAt = ?
+            idCategory = ?, idBusiness = ?, updatedAt = ?
         WHERE id = ?
     `;
   const now = new Date();
-  await pool.query(sql, [name, description, city, price, idCategory, now, id]);
+  await pool.query(sql, [
+    name,
+    description,
+    city,
+    price,
+    idCategory,
+    idBusiness,
+    now,
+    id,
+  ]);
 
   return true;
 }

@@ -20,6 +20,7 @@ const schemaExperience = Joi.object().keys({
   // eventStartDate: Joi.date().iso(),
   // eventEndDate: Joi.date().iso(),
   idCategory: Joi.number().integer().positive(),
+  idBusiness: Joi.number().integer().positive(),
 });
 
 async function patchExperienceById(req, res) {

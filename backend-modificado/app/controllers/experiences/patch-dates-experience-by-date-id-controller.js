@@ -13,9 +13,9 @@ const {
 const schemaId = Joi.number().integer().positive().required();
 
 const schemaDate = Joi.object().keys({
-  eventStartDate: Joi.date().iso().required(),
-  eventEndDate: Joi.date().iso().required(),
-  totalPlaces: Joi.number().integer().positive().max(1000).required(),
+  eventStartDate: Joi.date().iso(),
+  eventEndDate: Joi.date().iso(),
+  totalPlaces: Joi.number().integer().positive().max(1000),
 });
 
 async function patchDatesExperienceByDateId(req, res) {
@@ -39,8 +39,9 @@ async function patchDatesExperienceByDateId(req, res) {
       throwJsonError(404, "No existe la id de fecha");
     }
 
-    const oldTotalPlaces = datesData.totalPlaces;
-    const oldAvailablePlaces = datesData.availablePlaces;
+    const oldTotalPlaces = datesData[0].totalPlaces;
+    const oldAvailablePlaces = datesData[0].availablePlaces;
+
     const placesTaken = oldTotalPlaces - oldAvailablePlaces;
 
     const { body } = req;
@@ -49,33 +50,36 @@ async function patchDatesExperienceByDateId(req, res) {
 
     const { eventStartDate, eventEndDate, totalPlaces } = body;
 
-    const now = new Date().getTime();
-    const startDate = new Date(eventStartDate).getTime();
-    const endDate = new Date(eventEndDate).getTime();
+    if (eventStartDate && eventEndDate) {
+      const now = new Date().getTime();
+      const startDate = new Date(eventStartDate).getTime();
+      const endDate = new Date(eventEndDate).getTime();
 
-    if (startDate < endDate) {
-      if (startDate < now || endDate < now) {
+      if (startDate < endDate) {
+        if (startDate < now || endDate < now) {
+          throwJsonError(404, "Fechas incorrectas");
+        }
+      } else {
         throwJsonError(404, "Fechas incorrectas");
       }
-    } else {
-      throwJsonError(404, "Fechas incorrectas");
     }
 
-    const availablePlaces = totalPlaces - placesTaken;
+    const availablePlaces = +totalPlaces - placesTaken;
+
     if (availablePlaces < 0) {
       throwJsonError(404, "El nuevo número de plazas introducido no es válido");
     }
 
     const dates = {
-      eventStartDate,
-      eventEndDate,
-      totalPlaces,
+      ...datesData[0],
+      ...body,
       availablePlaces,
     };
+
     await updateDatesExperienceByDateId(idDate, dates);
 
     res.status(201).send({
-      message: `Fechas modificadas correctamente`,
+      message: `Datos modificadas correctamente`,
     });
   } catch (error) {
     createJsonError(error, res);

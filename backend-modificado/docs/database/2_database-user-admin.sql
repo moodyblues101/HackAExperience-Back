@@ -110,20 +110,20 @@ idCategory,
 idBusiness)
 VALUES (1,'Yoga en Adormideras','¡Yoga en la playa de Adormideras! Ven a disfrutar de una relajante experiencia acompañada de nuestros instructores más experimentados y regálate un momento de paz en tu día a día.', 'A Coruña', 25, 0, '2021-12-30 11:52:00', 1, 1),
 (2, 'Relax para 2', 'Aprovecha esta oportunidad para escapar de las prisas del día a día y recibir un merecido masaje relajante para ti y para quien tú quieras.', 'Santiago', 30, 0, '2021-12-30 11:50:02', 1, 2),
-(3, 'Taller de cocina italiana','¡Taller de cocina italiana en La Quadriglia! Si no tienes ni idea de cocinar pero te apetece a venir a pasar un buen rato y descubrir los secretos de la cocina italiana, vén a descubrir el mundo de la gastronomía de la mano de nuestros chefs.', 'A Coruña', 60, 0, '2021-12-30 11:50:04', 2, 3),
+(3, 'Taller de cocina italiana','¡Taller de cocina italiana en La Quadriglia! Si no tienes ni idea de cocinar pero te apetece venir a pasar un buen rato y descubrir los secretos de la cocina italiana, ven a descubrir el mundo de la gastronomía de la mano de nuestros chefs.', 'A Coruña', 60, 0, '2021-12-30 11:50:04', 2, 3),
 (4, 'Taller de nutrición',' Aprende de la mano de nuestros nutricionistas las claves de una alimentación saludable así como la forma de cocinar platos ricos y sanos.', 'Vigo', 15, 0, '2021-12-30 11:50:06', 2, 4),
-(5, 'Conduce un Ferrari','¡Vén a vivir la experiencia de conducir un Ferrari! A lo largo de una tarde podrás disfrutar de la experiencia de conducir un Ferrari en circuito cerrado ', 'Barcelona', 60, 0, '2021-12-30 11:50:08', 3, 5),
+(5, 'Conduce un Ferrari','¡Ven a vivir la experiencia de conducir un Ferrari! A lo largo de una tarde podrás disfrutar de la experiencia de conducir un Ferrari en circuito cerrado ', 'Barcelona', 60, 0, '2021-12-30 11:50:08', 3, 5),
 (6, 'Viaje en yate', '¿Has pensado dónde vas a ir en tus próximas vacaciones? Este es tu momento: alquila un yate con tripulación propia y navega por el Mediterráneo a bordo de una magnífica embarcación y no te preocupes de nada más.', 'Vigo', 75, 0, '2021-12-30 11:50:10', 3, 6),
-(7, 'Senderismo en Fraguas del Eume', 'Vén a disfrutar de una de las rutas más bonitas por la naturaleza adaptada a todos los públicos ', 'A Coruña', 35, 0, '2021-12-30 11:50:12', 4, 7),
+(7, 'Senderismo en Fraguas del Eume', 'Ven a disfrutar de una de las rutas más bonitas por la naturaleza adaptada a todos los públicos ', 'A Coruña', 35, 0, '2021-12-30 11:50:12', 4, 7),
 (8, 'Kayak Fragas do Eume ','Actividad de aventura en kayak en el corazón de As Fragas do Eume. Conoce el bosque atlántico mejor conservado de Europa desde su interior de una manera única', 'A Coruña', 55, 0, '2021-12-30 11:50:14', 4, 8),
 (9, 'Sesión de entrenamiento personal', 'Vive una experiencia deportiva diferente con un entrenador personal a tu disposición para guiarte en los ejercicios que más se adecuen a tu rutina', 'Madrid', 25, 0, '2021-12-30 11:52:00', 1, 1),
 (10, 'Cena especial','Indícanos tus gustos culinarios y musicales y te preparemos una cena inolvidable.', 'Santiago', 30, 0, '2021-12-30 11:50:02', 1, 2),
 (11, 'Taller de comida thailandesa', 'En nuestro taller de cocina tailandesa, aprendemos a preparar y a disfrutar de los platos más representativos de la gastronomía de este país. Atrévete a experimentar nuevos sabores.', 'A Coruña', 60, 0, '2021-12-30 11:50:04', 2, 3),
-(12, 'Fotografía de producto','Si quieres tener un perfil que sea la envidia de todos tus amigo, aprender a resaltar productos y hacer composicioness este es tu sitio.', 'Vigo', 15, 0, '2021-12-30 11:50:06', 2, 4),
+(12, 'Fotografía de producto','Si quieres tener un perfil que sea la envidia de todos tus amigos, aprender a resaltar productos y a hacer composiciones, este es tu sitio.', 'Vigo', 15, 0, '2021-12-30 11:50:06', 2, 4),
 (13, 'Pilota un helicóptero', '¡Pilotar un helicóptero real es una experiencia única que se debe vivir al menos una vez en la vida! Un instructor te acompañará a lo largo de todo el vuelo para que puedas sentir la seguridad de estar en buenas manos y la emoción de pilotar el helicóptero.', 'Barcelona', 60, 0, '2021-12-30 11:50:08', 3, 5),
-(14, 'Pilota una moto de carreras ','Siéntete un auténtico piloto de carreras, conduciendo por nuestro circuito cerrado.¡Disfruta de una buena ración de adrenalina y velocidad sobre una motocicleta!', 'Zaragoza', 75, 0, '2021-12-30 11:50:10', 3, 6),
-(15, 'Viaje en globo','Vive con nosotros la experiencia mágina e inolvidable de surcar los cielos.', 'Valencia', 35, 0, '2021-12-30 11:50:12', 4, 7),
-(16, 'Rafting en el Ulla','Con la ayuda de un monitor-guía nuestros aventureros tendrán como misión experimentar las mejores sensaciones de bajar un río de aguas bravas.', 'A Coruña', 55, 0, '2021-12-30 11:50:14', 4, 8)
+(14, 'Pilota una moto de carreras ','Siéntete un auténtico piloto de carreras conduciendo por nuestro circuito cerrado.¡Disfruta de una buena ración de adrenalina y velocidad sobre una motocicleta!', 'Zaragoza', 75, 0, '2021-12-30 11:50:10', 3, 6),
+(15, 'Viaje en globo','Vive con nosotros la experiencia mágica e inolvidable de surcar los cielos.', 'Valencia', 35, 0, '2021-12-30 11:50:12', 4, 7),
+(16, 'Rafting en el Ulla','Con la ayuda de un monitor-guía nuestros aventureros tendrán como misión experimentar las mejores sensaciones al bajar un río de aguas bravas.', 'A Coruña', 55, 0, '2021-12-30 11:50:14', 4, 8)
 ;
 
 insert into datesExperiences (
@@ -207,13 +207,13 @@ comment,
 rating,
 createdAt
 )
-values (1, 2, 1, '¡Nos ha encantado! La organización 10/10.¡Repetiríamos sin dudarlo!. ', 4, '2022-03-29 11:50:00'),
-(2, 4, 2, '¡Que importantes es destinar una parte de nuestro día a día al autocuidado. Estas sesiones son 100% recomendables para mantener nuestra autoestima alta.', 2, '2022-03-29 11:50:00'),
-(3, 2, 3, '¡He aprendido un montón y la comida que hicimos estaba riquísima!¡Deseando ir al siguiente!', 5, '2022-03-29 11:52:00'),
+values (1, 2, 1, '¡Nos ha encantado! La organización 10/10.¡Repetiríamos sin dudarlo! ', 5, '2022-03-29 11:50:00'),
+(2, 4, 2, '¡Que importantes es destinar una parte de nuestro día a día al autocuidado! Estas sesiones son 100% recomendables para mantener nuestra autoestima alta.', 5, '2022-03-29 11:50:00'),
+(3, 2, 3, '¡He aprendido un montón y la comida que hicimos estaba riquísima!¡Deseando ir al siguiente!', 4, '2022-03-29 11:52:00'),
 (4, 5, 4, 'Ojalá fuésemos más conscientes de la importancia de la alimentación saludable en nuestro día a día. Se nota que las profesoras tienen una vocación real. Lo recomiendo.', 4, '2022-04-29 11:56:00'),
 (5, 3, 5, 'Nunca había vivido nada igual. ¡Me ha encantado la experiencia!', 5, '2022-01-29 11:58:00'),
-(6, 5, 6, 'No tengo palabras para describirlo. ¡Tienes que vivirlo una vez en la vida!', 1, '2022-03-30 12:00:00'),
-(7, 4, 7, 'Leo vel fringilla est ullamcorper eget. Tempor orci eu lobortis elementum nibh tellus molestie.', 3, '2022-03-21 16:02:05'),
+(6, 5, 6, 'No tengo palabras para describirlo. ¡Tienes que vivirlo una vez en la vida!', 5, '2022-03-30 12:00:00'),
+(7, 4, 7, '¡Una pasada! Ha sido una experiencia genial', 4, '2022-03-21 16:02:05'),
 (8, 2, 8, 'Fui a la experiencia sin conocer a nadie pero enseguida me integraron y me hicieron sentirme una más. ¡Genial experiencia y genial el trato de los monitores!', 4, '2022-05-02 14:25:25')
 ;
 
